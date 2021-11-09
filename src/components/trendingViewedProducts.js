@@ -18,6 +18,7 @@ function TrendingViewed({ fetchUrl }) {
     const dec = num.split(".")[1];
     const len = dec && dec.length > 2 ? dec.length : 2;
     // console.log(Number(num).toFixed(len));
+
     return Number(num).toFixed(len);
   }
 
