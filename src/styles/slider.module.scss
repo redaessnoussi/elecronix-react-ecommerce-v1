@@ -1,0 +1,40 @@
+.slider {
+  // margin: 0 -20px;
+  position: relative;
+
+  .slider_countainer {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+
+    .slider_items {
+      margin: 0 20px;
+    }
+
+    .col_slides_3{
+      flex: 0 0 auto;
+      width: calc(25% - 40px)!important;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .btn_left {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-24px);
+  }
+
+  .btn_right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-24px);
+  }
+}

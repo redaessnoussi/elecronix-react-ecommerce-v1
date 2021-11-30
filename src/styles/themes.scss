@@ -1,0 +1,19 @@
+// Default Theme Color
+$theme-colors: (
+  "primary": #0f3460,
+  "danger": #ff4136,
+  "light": #dae1e7
+);
+
+// Importing Bootstrap's default variables
+// @import 'variables';
+@import '~bootstrap/scss/bootstrap';
+
+// Default Font
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700;800&display=swap');
+body{
+  font-family: 'Karla', sans-serif;
+}
+
+@import 'navs.module';
+@import 'dropdowns.module';
