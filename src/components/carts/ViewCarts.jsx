@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { commerce } from "../../lib/commerce";
 import {
   Col,
   Container,
@@ -8,6 +9,7 @@ import {
   Button,
   Accordion,
   Form,
+  Badge,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 // FONT AWESOME
@@ -17,10 +19,20 @@ import { faPlus, faMinus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 // STYLINGS MODULES
 import images from "../../styles/images.module.scss";
 
-const ViewCarts = ({ cartItemsTotal, updateItemCart, removeAllItems }) => {
+const ViewCarts = ({
+  cartItemsTotal,
+  updateItemCart,
+  removeAllItems,
+  checkoutToken,
+}) => {
   const totalItems = cartItemsTotal.total_items;
   const items = cartItemsTotal.line_items;
-  const deliveryTax = 80;
+  const [shippingCountries, setShippingCountries] = useState({});
+  const [shippingCountry, setShippingCountry] = useState("");
+  const [countrySubdivisions, setCountrySubdivisions] = useState({});
+  const [countrySubdivision, setCountrySubdivision] = useState("");
+  const [shippingOptions, setShippingOptions] = useState({});
+  const [shippingPrice, setShippingPrice] = useState("");
 
   const reduceItem = (itemID, itemQuantity) => {
     if (itemQuantity === 1) {
@@ -44,7 +56,7 @@ const ViewCarts = ({ cartItemsTotal, updateItemCart, removeAllItems }) => {
 
   const CartItems = () => (
     <>
-      <Table className="border table-borderless">
+      <Table className="border table-borderless mb-4">
         <thead className="card-header">
           <tr className="border-bottom text-center">
             <th>Product</th>
@@ -145,15 +157,19 @@ const ViewCarts = ({ cartItemsTotal, updateItemCart, removeAllItems }) => {
             <Form>
               <Form.Group className="mb-3" controlId="country">
                 <Form.Label className="fw-bold">Country *</Form.Label>
-                <Form.Select>
-                  <option>Default select</option>
-                </Form.Select>
+                <Form.Select
+                  value={shippingCountry}
+                  dangerouslySetInnerHTML={{ __html: shippingCountries.html }}
+                  onChange={(e) => setShippingCountry(e.target.value)}
+                ></Form.Select>
               </Form.Group>
               <Form.Group className="mb-3" controlId="state">
                 <Form.Label className="fw-bold">State/Province</Form.Label>
-                <Form.Select>
-                  <option>Default select</option>
-                </Form.Select>
+                <Form.Select
+                  value={countrySubdivision}
+                  dangerouslySetInnerHTML={{ __html: countrySubdivisions.html }}
+                  onChange={(e) => setCountrySubdivision(e.target.value)}
+                ></Form.Select>
               </Form.Group>
               <Form.Group className="mb-3" controlId="zip">
                 <Form.Label className="fw-bold">Zip/Postal Code</Form.Label>
@@ -166,35 +182,91 @@ const ViewCarts = ({ cartItemsTotal, updateItemCart, removeAllItems }) => {
           </Accordion.Body>
         </Accordion.Item>
         <div className="p-3 border-bottom">
-          <div className="d-flex justify-content-between">
-            <p className="text-black-50">Sub-Total</p>
-            <p className="fw-bold">
-              {cartItemsTotal.subtotal &&
-                cartItemsTotal.subtotal.formatted_with_symbol}
+          <div className="d-flex justify-content-between mb-2">
+            <p className="text-black-50 mb-0">Sub-Total</p>
+            <p className="fw-bold fs-6 mb-0">
+              ${cartItemsTotal.subtotal && cartItemsTotal.subtotal.raw}
             </p>
           </div>
-          <div className="d-flex justify-content-between">
-            <p className="text-black-50">Delivery Charges</p>
-            <p className="fw-bold">$80.00</p>
+          <div className="d-flex justify-content-between align-items-center mb-2">
+            <p className="text-black-50 mb-0">Delivery Charges</p>
+            <Badge bg="danger" className="fs-6">
+              {shippingOptions[0] &&
+                shippingPrice + " " + shippingOptions[0].description}
+            </Badge>
           </div>
           <div className="d-flex justify-content-between">
             <p className="text-black-50 mb-0">Coupan Discount</p>
-            <p className="text-danger fw-bold mb-0">Apply Coupan</p>
+            <p className="text-primary fw-bold fs-6 mb-0">Apply Coupan</p>
           </div>
         </div>
         <div className="p-3">
-          <div className="d-flex justify-content-between">
-            <h5>Total Amount</h5>
-            <h5>
+          <div className="d-flex justify-content-between align-items-center">
+            <h5 className="mb-0">Total Amount</h5>
+            <Badge bg="primary" className="fs-5">
               $
-              {cartItemsTotal.subtotal &&
-                cartItemsTotal.subtotal.raw + deliveryTax}
-            </h5>
+              {shippingOptions[0] &&
+                cartItemsTotal.subtotal.raw + shippingOptions[0].price.raw}
+            </Badge>
           </div>
         </div>
       </Accordion>
     </>
   );
+
+  useEffect(() => {
+    const fetchShippingContries = async () => {
+      try {
+        const shippingCountries =
+          await commerce.services.localeListShippingCountries(checkoutToken);
+        setShippingCountries(shippingCountries);
+        const entries = Object.entries(shippingCountries).map(
+          ([code, name]) => ({ id: code, lable: name })
+        );
+        const countries = Object.keys(entries[0].lable);
+        setShippingCountry(countries[0]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    checkoutToken && fetchShippingContries();
+  }, [checkoutToken]);
+
+  useEffect(() => {
+    const fetchCountrySubdivisions = async (countryCode) => {
+      try {
+        const countrySubdivisions =
+          await commerce.services.localeListSubdivisions(countryCode);
+        setCountrySubdivisions(countrySubdivisions);
+        const entries = Object.entries(countrySubdivisions).map(
+          ([code, name]) => ({ id: code, lable: name })
+        );
+        const subdivisions = Object.keys(entries[0].lable);
+        setCountrySubdivision(subdivisions[0]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    shippingCountry && fetchCountrySubdivisions(shippingCountry);
+  }, [shippingCountry]);
+
+  useEffect(() => {
+    const fetchShippingOptions = async () => {
+      const shippingOptions = await commerce.checkout.getShippingOptions(
+        checkoutToken,
+        {
+          country: shippingCountry,
+          region: countrySubdivision,
+        }
+      );
+      setShippingOptions(shippingOptions);
+      // console.log(shippingOptions);
+      setShippingPrice(shippingOptions[0].price.formatted_with_symbol);
+    };
+
+    countrySubdivision && fetchShippingOptions();
+    // eslint-disable-next-line
+  }, [countrySubdivision]);
 
   return (
     <>

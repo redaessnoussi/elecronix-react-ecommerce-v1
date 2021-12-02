@@ -21,7 +21,7 @@ const Carts = ({
   updateItemCart,
   removeAllItems,
 }) => {
-  console.log(cartItemsTotal);
+  // console.log(cartItemsTotal);
   const totalItems = cartItemsTotal.total_items;
 
   const EmptyCart = () => (

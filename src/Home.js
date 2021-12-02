@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function Home() {
   const [products, setProducts] = useState([]);
   const [carts, setCarts] = useState({});
+  const [checkoutToken, setcheckoutToken] = useState({});
   const [show, setShow] = useState(false);
 
   const fetchProducts = async () => {
@@ -42,6 +43,22 @@ function Home() {
     fetchProducts();
     fetchCarts();
   }, []);
+
+  useEffect(() => {
+    // cart_M5Q3NxB33B2nmw
+    const generateToken = async () => {
+      try {
+        const token = await commerce.checkout.generateToken(carts.id, {
+          type: "cart",
+        });
+        setcheckoutToken(token);
+        // console.log(token);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    carts.id && generateToken();
+  }, [carts]);
 
   // commerce.cart.empty()
 
@@ -78,11 +95,16 @@ function Home() {
             exact
             path="/carts"
             element={
-              <ViewCarts
-                cartItemsTotal={carts}
-                updateItemCart={updateItemCart}
-                removeAllItems={removeAllItems}
-              />
+              checkoutToken ? (
+                <ViewCarts
+                  cartItemsTotal={carts}
+                  updateItemCart={updateItemCart}
+                  removeAllItems={removeAllItems}
+                  checkoutToken={checkoutToken.id}
+                />
+              ) : (
+                alert("Hello")
+              )
             }
           />
           <Route exact path="/checkout" element={<Checkout />} />
