@@ -16,7 +16,21 @@
 
     .col_slides_3{
       flex: 0 0 auto;
-      width: calc(25% - 40px)!important;
+      @media (min-width: 0) { 
+        width: calc(100% - 40px)!important;
+       }
+      @media (min-width: 576px) { 
+        width: calc(50% - 40px)!important;
+       }
+      @media (min-width: 768px) {
+        width: calc(50% - 40px)!important;
+       }
+      @media (min-width: 992px) { 
+        width: calc(33.25% - 40px)!important;
+      }
+      @media (min-width: 1200px) { 
+        width: calc(25% - 40px)!important;
+       }
     }
 
     &::-webkit-scrollbar {

@@ -10,6 +10,7 @@ import {
   Accordion,
   Form,
   Badge,
+  Spinner,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 // FONT AWESOME
@@ -33,6 +34,19 @@ const ViewCarts = ({
   const [countrySubdivision, setCountrySubdivision] = useState("");
   const [shippingOptions, setShippingOptions] = useState({});
   const [shippingPrice, setShippingPrice] = useState("");
+
+  const LoadingSpinner = (color) => (
+    <>
+      <Spinner
+        as="span"
+        animation="border"
+        size="sm"
+        role="status"
+        aria-hidden="true"
+      />
+      <span className="visually-hidden">Loading...</span>
+    </>
+  );
 
   const reduceItem = (itemID, itemQuantity) => {
     if (itemQuantity === 1) {
@@ -185,14 +199,21 @@ const ViewCarts = ({
           <div className="d-flex justify-content-between mb-2">
             <p className="text-black-50 mb-0">Sub-Total</p>
             <p className="fw-bold fs-6 mb-0">
-              ${cartItemsTotal.subtotal && cartItemsTotal.subtotal.raw}
+              {cartItemsTotal.subtotal ? (
+                "$" + cartItemsTotal.subtotal.raw
+              ) : (
+                <LoadingSpinner />
+              )}
             </p>
           </div>
           <div className="d-flex justify-content-between align-items-center mb-2">
             <p className="text-black-50 mb-0">Delivery Charges</p>
             <Badge bg="danger" className="fs-6">
-              {shippingOptions[0] &&
-                shippingPrice + " " + shippingOptions[0].description}
+              {shippingOptions[0] && shippingOptions[0] !== 0 ? (
+                shippingPrice + " " + shippingOptions[0].description
+              ) : (
+                <LoadingSpinner />
+              )}
             </Badge>
           </div>
           <div className="d-flex justify-content-between">
@@ -204,9 +225,11 @@ const ViewCarts = ({
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="mb-0">Total Amount</h5>
             <Badge bg="primary" className="fs-5">
-              $
-              {shippingOptions[0] &&
-                cartItemsTotal.subtotal.raw + shippingOptions[0].price.raw}
+              {shippingOptions[0] && shippingOptions[0] !== 0 ? (
+                "$" + cartItemsTotal.subtotal.raw + shippingOptions[0].price.raw
+              ) : (
+                <LoadingSpinner />
+              )}
             </Badge>
           </div>
         </div>
