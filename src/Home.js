@@ -72,6 +72,7 @@ function Home() {
           fetchUrl={requests.getCategories}
           cartItemsTotal={carts}
           handleShow={handleShow}
+          products={products}
         />
         <Carts
           show={show}
@@ -107,7 +108,18 @@ function Home() {
               )
             }
           />
-          <Route exact path="/checkout" element={<Checkout />} />
+          <Route
+            exact
+            path="/checkout"
+            element={
+              <Checkout
+                cartItemsTotal={carts}
+                updateItemCart={updateItemCart}
+                removeAllItems={removeAllItems}
+                checkoutToken={checkoutToken.id}
+              />
+            }
+          />
         </Routes>
       </Suspense>
     </Router>

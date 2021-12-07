@@ -2,15 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 // REACT BOOTSTRAP
 import { Offcanvas, Card, Row, Col, Button } from "react-bootstrap";
-// FONT AWESOME
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// SOLID ICONS
-import {
-  faShoppingBag,
-  faPlus,
-  faMinus,
-  faTimes,
-} from "@fortawesome/free-solid-svg-icons";
+// REACT UNICONS
+import { UilShoppingBag, UilTimes } from "@iconscout/react-unicons";
 // STYLINGS MODULES
 import images from "../../styles/images.module.scss";
 
@@ -38,7 +31,7 @@ const Carts = ({
           size="sm"
           className="rounded-circle disabled"
         >
-          <FontAwesomeIcon icon={faMinus} />
+          {/* <FontAwesomeIcon icon={faMinus} /> */}
         </Button>
       );
     } else {
@@ -49,7 +42,7 @@ const Carts = ({
           className="rounded-circle"
           onClick={() => updateItemCart(itemID, itemQuantity - 1)}
         >
-          <FontAwesomeIcon icon={faMinus} />
+          {/* <FontAwesomeIcon icon={faMinus} /> */}
         </Button>
       );
     }
@@ -58,14 +51,14 @@ const Carts = ({
   const CartItems = () => (
     <>
       {cartItemsTotal.line_items.map((item, id) => (
-        <Card className="rounded-0" key={id}>
+        <Card className="border-bottom-0 rounded-0" key={id}>
           <Card.Body>
             <Row>
-              <Col
+              {/* <Col
                 xs="auto"
                 className="align-items-center d-flex flex-column justify-content-between"
               >
-                {/* INCREASE ITEM ON CARTS */}
+                INCREASE ITEM ON CARTS
                 <Button
                   variant="outline-primary"
                   size="sm"
@@ -75,9 +68,9 @@ const Carts = ({
                   <FontAwesomeIcon icon={faPlus} />
                 </Button>
                 <span>{item.quantity}</span>
-                {/* REDUCE ITEM ON CARTS */}
+                REDUCE ITEM ON CARTS
                 {reduceItem(item.id, item.quantity)}
-              </Col>
+              </Col> */}
               <Col xs="auto">
                 <img
                   className={images.img__carts_items + " sm mr-3"}
@@ -88,17 +81,21 @@ const Carts = ({
                 />
               </Col>
               <Col>
-                <h6 className="small mb-0">{item.name}</h6>
-                <p className="small mb-1">
+                <h6 className="small mb-3">{item.name}</h6>
+                <p className="small mb-0 fw-bold text-primary">
                   {item.price.formatted_with_symbol} x {item.quantity}
                 </p>
-                <h6 className="text-danger">
+                {/* <h6 className="text-danger">
                   {item.line_total.formatted_with_symbol}
-                </h6>
+                </h6> */}
               </Col>
               <Col xs="auto">
-                <Button variant="link" onClick={() => removeAllItems(item.id)}>
-                  <FontAwesomeIcon icon={faTimes} />
+                <Button
+                  variant="link"
+                  className="text-black"
+                  onClick={() => removeAllItems(item.id)}
+                >
+                  <UilTimes />
                 </Button>
               </Col>
             </Row>
@@ -128,7 +125,7 @@ const Carts = ({
       <Offcanvas show={show} onHide={handleClose} placement="end">
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
-            <FontAwesomeIcon icon={faShoppingBag} className="me-2" />
+            <UilShoppingBag className="me-2" />
             {cartItemsTotal.total_unique_items <= 1
               ? cartItemsTotal.total_unique_items + " Item"
               : cartItemsTotal.total_unique_items + " Items"}

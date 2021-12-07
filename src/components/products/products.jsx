@@ -9,7 +9,7 @@ function products({ products, addCarts }) {
 
   return (
     <div className="container pt-5">
-      <h1>Products</h1>
+      <h1>New Arrival</h1>
       <Container>
         <Row>
           {products.map((product, i) => (
@@ -20,14 +20,8 @@ function products({ products, addCarts }) {
                   src={product.image.url}
                   className={images.img__products + " mt-4"}
                 />
-                <Card.Body>
-                  <div>
-                    <Card.Title>{product.name}</Card.Title>
-                    <Card.Text
-                      dangerouslySetInnerHTML={{ __html: product.description }}
-                      className={cards.description__product}
-                    ></Card.Text>
-                  </div>
+                <Card.Body className="d-flex flex-column justify-content-between">
+                  <p>{product.name}</p>
                   <Button
                     variant="primary"
                     onClick={() => addCarts(product.id, 1)}

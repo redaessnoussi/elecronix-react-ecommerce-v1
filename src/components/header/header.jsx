@@ -1,34 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 // import { Link } from "react-router-dom";
 // REACT CONTRY FLAGS
 import Flags from "country-flag-icons/react/3x2";
 // REACT CURRENCY SYMBOLS
-// import currencyToSymbolMap from "currency-symbol-map/map";
-// FONT AWESOME
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// SOLID ICONS
+import currencyToSymbolMap from "currency-symbol-map/map";
+// REACT UNICONS
 import {
-  faUser,
-  faShoppingBag,
-  faSearch,
-  faPhoneAlt,
-  faShapes,
-} from "@fortawesome/free-solid-svg-icons";
-// REGULAR ICONS
-import { faEnvelope as fasEnvelope } from "@fortawesome/free-regular-svg-icons";
+  UilShoppingBag,
+  UilUser,
+  UilBars,
+  UilSearch,
+  UilPhone,
+  UilEnvelope,
+} from "@iconscout/react-unicons";
 // STYLINGS MODULES
 import buttons from "../../styles/buttons.module.scss";
 import "../../styles/navs.module.scss";
 
-function Header({ fetchUrl, cartItemsTotal, handleShow }) {
+function Header({ fetchUrl, cartItemsTotal, handleShow, products }) {
+  const currencyEntries = Object.entries(currencyToSymbolMap);
+  const [currency, setCurrency] = useState("USD ($)");
+
+  const ShowCurrencies = () =>
+    currencyEntries.map((item, key) => (
+      <a
+        className="dropdown-item"
+        href="!#"
+        key={key}
+        onClick={(e) => setCurrency(e.target.text)}
+      >
+        {item[0] + " (" + item[1] + ")"}
+      </a>
+    ));
+
+  const ShowCategories = () =>
+    products.map((product, key) => (
+      <li key={key}>
+        <a className="dropdown-item" href="#!">
+          {product.categories[0].name}
+        </a>
+      </li>
+    ));
+
   const ShowCarts = () => (
     <>
       <button
         type="button"
-        className={"btn rounded-circle position-relative " + buttons.btn_grey}
+        className={
+          "btn rounded-circle position-relative p-2 " + buttons.btn_grey
+        }
         onClick={handleShow}
       >
-        <FontAwesomeIcon icon={faShoppingBag} />
+        <UilShoppingBag />
         <span className=" position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
           {cartItemsTotal.total_unique_items
             ? cartItemsTotal.total_unique_items
@@ -48,11 +71,11 @@ function Header({ fetchUrl, cartItemsTotal, handleShow }) {
             {/* STARTS: CONTACT INFO */}
             <ul className="list-inline w-auto mb-0">
               <li className="list-inline-item text-white me-4 small">
-                <FontAwesomeIcon icon={faPhoneAlt} className="me-2" />
+                <UilPhone className="me-2" />
                 +88012 3456 7894
               </li>
               <li className="list-inline-item text-white small">
-                <FontAwesomeIcon icon={fasEnvelope} className="me-2" />
+                <UilEnvelope className="me-2" />
                 support@ui-lib.com
               </li>
             </ul>
@@ -81,7 +104,7 @@ function Header({ fetchUrl, cartItemsTotal, handleShow }) {
                     // aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <Flags.GB title="English" width="25" className="me-1" />
+                    <Flags.GB title="English" width="25" className="me-2" />
                     EN
                   </a>
                   <div className="dropdown-menu" aria-labelledby="language">
@@ -112,18 +135,13 @@ function Header({ fetchUrl, cartItemsTotal, handleShow }) {
                     // aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    USD ($)
+                    {currency}
                   </a>
-                  <div className="dropdown-menu" aria-labelledby="currency">
-                    <a className="dropdown-item" href="!#">
-                      USD ($)
-                    </a>
-                    <a className="dropdown-item" href="!#">
-                      EURO (€)
-                    </a>
-                    <a className="dropdown-item" href="!#">
-                      GBP (£)
-                    </a>
+                  <div
+                    className="dropdown-menu shrink"
+                    aria-labelledby="currency"
+                  >
+                    <ShowCurrencies />
                   </div>
                 </div>
               </li>
@@ -164,7 +182,7 @@ function Header({ fetchUrl, cartItemsTotal, handleShow }) {
                   type="button"
                   id="button-addon1"
                 >
-                  <FontAwesomeIcon icon={faSearch} />
+                  <UilSearch />
                 </button>
                 <input
                   type="text"
@@ -175,9 +193,8 @@ function Header({ fetchUrl, cartItemsTotal, handleShow }) {
                 />
                 <button
                   className={
-                    "btn btn-outline-light dropdown-toggle " +
-                    buttons.btn_rounded_right +
-                    " text-black-50"
+                    "btn btn-primary dropdown-toggle " +
+                    buttons.btn_rounded_right
                   }
                   type="button"
                   data-bs-toggle="dropdown"
@@ -186,50 +203,18 @@ function Header({ fetchUrl, cartItemsTotal, handleShow }) {
                   All Categories
                 </button>
                 <ul className="dropdown-menu dropdown-menu-end">
-                  <li>
-                    <a className="dropdown-item" href="#!">
-                      Cameras, Camcorders & Drones
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#!">
-                      Cell Phones
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#!">
-                      Headphones
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#!">
-                      Laptops & Computers
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#!">
-                      Tablets & E-Readers
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#!">
-                      TVs & Projectors
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#!">
-                      Video Games, Consoles & VR
-                    </a>
-                  </li>
+                  <ShowCategories />
                 </ul>
               </div>
             </form>
             <div>
               <button
                 type="button"
-                className={"btn rounded-circle " + buttons.btn_grey + " me-3"}
+                className={
+                  "btn rounded-circle p-2 " + buttons.btn_grey + " me-3"
+                }
               >
-                <FontAwesomeIcon icon={faUser} />
+                <UilUser />
               </button>
               <ShowCarts />
             </div>
@@ -246,7 +231,9 @@ function Header({ fetchUrl, cartItemsTotal, handleShow }) {
                 <div className="d-grid gap-1">
                   <button
                     className={
-                      "btn " + buttons.btn_grey + " dropdown-toggle shadow-sm"
+                      "btn d-flex justify-content-around align-items-center " +
+                      buttons.btn_grey +
+                      " dropdown-toggle shadow-sm"
                     }
                     type="button"
                     id="categories"
@@ -254,45 +241,10 @@ function Header({ fetchUrl, cartItemsTotal, handleShow }) {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <FontAwesomeIcon icon={faShapes} className="me-2" />{" "}
-                    Categories
+                    <UilBars /> Categories
                   </button>
                   <div className="dropdown-menu" aria-labelledby="categories">
-                    <li>
-                      <a className="dropdown-item" href="#!">
-                        Cameras, Camcorders & Drones
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#!">
-                        Cell Phones
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#!">
-                        Headphones
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#!">
-                        Laptops & Computers
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#!">
-                        Tablets & E-Readers
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#!">
-                        TVs & Projectors
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#!">
-                        Video Games, Consoles & VR
-                      </a>
-                    </li>
+                    <ShowCategories />
                   </div>
                 </div>
               </div>

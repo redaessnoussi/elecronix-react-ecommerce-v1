@@ -1,6 +1,7 @@
 // Default Theme Color
 $theme-colors: (
   "primary": #0f3460,
+  "secondary": #E4E0DA,
   "danger": #ff4136,
   "light": #dae1e7
 );
@@ -13,7 +14,9 @@ $theme-colors: (
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 body{
   font-family: 'Inter', sans-serif;
+  font-weight: 500
 }
 
 @import 'navs.module';
 @import 'dropdowns.module';
+@import 'buttons.module.scss';

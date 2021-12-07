@@ -1,3 +1,8 @@
 .dropdown-menu{
   min-width: auto!important;
 }
+
+.dropdown-menu.shrink.show{
+  max-height: 200px;
+  overflow-y: auto;
+}

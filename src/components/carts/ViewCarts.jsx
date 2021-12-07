@@ -3,7 +3,6 @@ import { commerce } from "../../lib/commerce";
 import {
   Col,
   Container,
-  Table,
   Card,
   Row,
   Button,
@@ -11,14 +10,26 @@ import {
   Form,
   Badge,
   Spinner,
+  Image,
+  InputGroup,
+  FormControl,
 } from "react-bootstrap";
+import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import { Link } from "react-router-dom";
 // FONT AWESOME
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // SOLID ICONS
-import { faPlus, faMinus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPlus,
+  faMinus,
+  faTrashAlt,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
+// REACT UNICONS
+import { UilAngleRightB } from "@iconscout/react-unicons";
 // STYLINGS MODULES
-import images from "../../styles/images.module.scss";
+import cards from "../../styles/cards.module.scss";
+import fonts from "../../styles/typography.module.scss";
 
 const ViewCarts = ({
   cartItemsTotal,
@@ -35,6 +46,26 @@ const ViewCarts = ({
   const [shippingOptions, setShippingOptions] = useState({});
   const [shippingPrice, setShippingPrice] = useState("");
 
+  function CustomToggle({ eventKey }) {
+    const decoratedOnClick = useAccordionButton(eventKey);
+
+    return (
+      <>
+        <Badge bg="primary" className="p-2 rounded-3">
+          <Image src="./images/coupon.svg" width="20" />
+        </Badge>
+        <Button
+          variant="link"
+          className={"text-dark text-decoration-none"}
+          eventkey="0"
+          onClick={decoratedOnClick}
+        >
+          Have a coupon code? <UilAngleRightB />
+        </Button>
+      </>
+    );
+  }
+
   const LoadingSpinner = (color) => (
     <>
       <Spinner
@@ -48,17 +79,17 @@ const ViewCarts = ({
     </>
   );
 
-  const reduceItem = (itemID, itemQuantity) => {
+  const ReduceItem = ({ itemID, itemQuantity }) => {
     if (itemQuantity === 1) {
       return (
-        <Button variant="outline-primary" size="sm" className="disabled">
+        <Button variant="light" size="sm" className="text-black-50 disabled">
           <FontAwesomeIcon icon={faMinus} />
         </Button>
       );
     } else {
       return (
         <Button
-          variant="outline-primary"
+          variant="primary"
           size="sm"
           onClick={() => updateItemCart(itemID, itemQuantity - 1)}
         >
@@ -68,71 +99,69 @@ const ViewCarts = ({
     }
   };
 
+  const IncreaseItem = ({ itemID, itemQuantity }) => (
+    <Button
+      variant="primary"
+      size="sm"
+      onClick={() => updateItemCart(itemID, itemQuantity + 1)}
+    >
+      <FontAwesomeIcon icon={faPlus} />
+    </Button>
+  );
+
   const CartItems = () => (
     <>
-      <Table className="border table-borderless mb-4">
-        <thead className="card-header">
-          <tr className="border-bottom text-center">
-            <th>Product</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {items
-            ? items.map((item, index) => (
-                <tr key={index} className="align-middle">
-                  <td width="40%">
-                    <div className="d-flex align-items-center">
-                      <div className="flex-shrink-0">
-                        <img
-                          className={images.img__carts_items}
-                          src={item.image.url}
-                          alt={item.name}
-                          width="70"
-                          height="70"
-                        />
-                      </div>
-                      <div className="flex-grow-1 ms-3">
-                        <p className="mb-0">{item.name}</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="text-center">
-                    {item.price.formatted_with_symbol}
-                  </td>
-                  <td width="130" className="text-center">
-                    {/* REDUCE ITEM ON CARTS */}
-                    {reduceItem(item.id, item.quantity)}
-                    <span className="mx-3">{item.quantity}</span>
-                    {/* INCREASE ITEM ON CARTS */}
-                    <Button
-                      variant="outline-primary"
-                      size="sm"
-                      onClick={() => updateItemCart(item.id, item.quantity + 1)}
-                    >
-                      <FontAwesomeIcon icon={faPlus} />
-                    </Button>
-                  </td>
-                  <td className="text-center">
-                    {item.line_total.formatted_with_symbol}
-                  </td>
-                  <td>
-                    <Button
-                      variant="link"
-                      onClick={() => removeAllItems(item.id)}
-                    >
-                      <FontAwesomeIcon icon={faTrashAlt} />
-                    </Button>
-                  </td>
-                </tr>
-              ))
-            : null}
-        </tbody>
-      </Table>
+      {items
+        ? items.map((item, index) => (
+            <div
+              className="d-flex align-items-center border-1 border-primary border-bottom py-4"
+              key={index}
+            >
+              <div className="flex-shrink-0">
+                <img src={item.image.url} alt={item.name} width="70" />
+              </div>
+              <div className="flex-grow-1 ms-4">
+                <h6 className="mt-0">{item.name}</h6>
+                <p className="text-primary">
+                  {item.price.formatted_with_symbol}
+                </p>
+                <div className="align-items-center d-flex">
+                  {/* REDUCE ITEM ON CARTS */}
+                  <ReduceItem itemID={item.id} itemQuantity={item.quantity} />
+                  <span className="mx-3 text-primary">{item.quantity}</span>
+                  {/* INCREASE ITEM ON CARTS */}
+                  <IncreaseItem itemID={item.id} itemQuantity={item.quantity} />
+                </div>
+              </div>
+              <Button variant="btn-link">
+                <FontAwesomeIcon icon={faTimes} />
+              </Button>
+            </div>
+          ))
+        : null}
     </>
+  );
+
+  const CouponCard = () => (
+    <Accordion defaultActiveKey="0" className="mb-4">
+      <Card className={cards.cards__grey25 + " border border-primary mb-4"}>
+        <Card.Body className="text-center">
+          <CustomToggle eventkey="0" />
+          <Accordion.Collapse eventkey="0" className="mt-3">
+            <InputGroup className="mx-auto w-75">
+              <FormControl
+                placeholder="Enter coupon code..."
+                aria-label="Enter coupon code..."
+                aria-describedby="coupon"
+              />
+              <Button variant="primary" id="coupon">
+                Apply
+              </Button>
+            </InputGroup>
+          </Accordion.Collapse>
+        </Card.Body>
+      </Card>
+    </Accordion>
   );
 
   const CheckoutBtn = () => (
@@ -160,45 +189,12 @@ const ViewCarts = ({
 
   const ShoppingSummary = () => (
     <>
-      <Accordion defaultActiveKey="0" flush>
-        <Accordion.Item eventKey="0">
-          <Accordion.Header>Estimate Shipping</Accordion.Header>
-          <Accordion.Body>
-            <p className="text-black-50">
-              Enter your destination to get a shipping estimate
-            </p>
-            {/* Form Starting */}
-            <Form>
-              <Form.Group className="mb-3" controlId="country">
-                <Form.Label className="fw-bold">Country *</Form.Label>
-                <Form.Select
-                  value={shippingCountry}
-                  dangerouslySetInnerHTML={{ __html: shippingCountries.html }}
-                  onChange={(e) => setShippingCountry(e.target.value)}
-                ></Form.Select>
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="state">
-                <Form.Label className="fw-bold">State/Province</Form.Label>
-                <Form.Select
-                  value={countrySubdivision}
-                  dangerouslySetInnerHTML={{ __html: countrySubdivisions.html }}
-                  onChange={(e) => setCountrySubdivision(e.target.value)}
-                ></Form.Select>
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="zip">
-                <Form.Label className="fw-bold">Zip/Postal Code</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter zip/postal code..."
-                />
-              </Form.Group>
-            </Form>
-          </Accordion.Body>
-        </Accordion.Item>
-        <div className="p-3 border-bottom">
-          <div className="d-flex justify-content-between mb-2">
-            <p className="text-black-50 mb-0">Sub-Total</p>
-            <p className="fw-bold fs-6 mb-0">
+      <Card className="border-primary">
+        <Card.Body>
+          <h5 className="mb-4">Summary</h5>
+          <div className="d-flex justify-content-between">
+            <p className="small mb-0">Total</p>
+            <p className={"text-primary mb-4 "}>
               {cartItemsTotal.subtotal ? (
                 "$" + cartItemsTotal.subtotal.raw
               ) : (
@@ -206,34 +202,17 @@ const ViewCarts = ({
               )}
             </p>
           </div>
-          <div className="d-flex justify-content-between align-items-center mb-2">
-            <p className="text-black-50 mb-0">Delivery Charges</p>
-            <Badge bg="danger" className="fs-6">
-              {shippingOptions[0] && shippingOptions[0] !== 0 ? (
-                shippingPrice + " " + shippingOptions[0].description
-              ) : (
-                <LoadingSpinner />
-              )}
-            </Badge>
+          <div className="d-grid gap-2">
+            <Button className="py-2">Checkout</Button>
+            <Button
+              variant="link"
+              className={fonts.fw_500 + " text-primary text-decoration-none"}
+            >
+              Continue Shopping
+            </Button>
           </div>
-          <div className="d-flex justify-content-between">
-            <p className="text-black-50 mb-0">Coupan Discount</p>
-            <p className="text-primary fw-bold fs-6 mb-0">Apply Coupan</p>
-          </div>
-        </div>
-        <div className="p-3">
-          <div className="d-flex justify-content-between align-items-center">
-            <h5 className="mb-0">Total Amount</h5>
-            <Badge bg="primary" className="fs-5">
-              {shippingOptions[0] && shippingOptions[0] !== 0 ? (
-                "$" + cartItemsTotal.subtotal.raw + shippingOptions[0].price.raw
-              ) : (
-                <LoadingSpinner />
-              )}
-            </Badge>
-          </div>
-        </div>
-      </Accordion>
+        </Card.Body>
+      </Card>
     </>
   );
 
@@ -299,15 +278,13 @@ const ViewCarts = ({
             {/* Showing Table */}
             {totalItems === 0 ? <EmptyCart /> : <CartItems />}
             {/* Showing Check Out Button */}
-            <CheckoutBtn />
+            {/* <CheckoutBtn /> */}
           </Col>
           <Col md="4">
-            <Card>
-              <Card.Header className="fw-bold">Summary</Card.Header>
-              <Card.Body className="p-0">
-                <ShoppingSummary />
-              </Card.Body>
-            </Card>
+            {/* Coupon Code */}
+            <CouponCard />
+            {/* Shopping Summary */}
+            <ShoppingSummary />
           </Col>
         </Row>
       </Container>
