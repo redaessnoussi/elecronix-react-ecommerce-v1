@@ -1,14 +1,19 @@
 import React, { Suspense, useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
+// API
+import requests from "./api/request";
+// Components
 import Breadcrumbs from "./components/breadcrumbs/breadcrumbs";
 import CartSteps from "./components/cartSteps/cartSteps";
 import FlashDeals from "./components/flashDeals/flashDealsProducts";
 import Header from "./components/header/header";
-import requests from "./api/request";
 import Products from "./components/products/products";
 import CartsCanvas from "./components/carts/cartsCanvas";
 import ViewCarts from "./components/carts/ViewCarts";
 import Checkout from "./components/checkout/checkout";
+import Newsletter from "./components/newsletter/newsletter";
+import Footer from "./components/footer/footer";
+// Library
 import { commerce } from "./lib/commerce";
 // React Router
 import {
@@ -154,6 +159,8 @@ function Home() {
             }
           />
         </Routes>
+        <Newsletter />
+        <Footer />
       </Suspense>
     </Router>
   );

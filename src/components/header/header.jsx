@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 // import { Link } from "react-router-dom";
+import BrandName from "../../BrandName";
 // REACT CONTRY FLAGS
 import Flags from "country-flag-icons/react/3x2";
 // REACT CURRENCY SYMBOLS
@@ -52,7 +53,7 @@ function Header({ fetchUrl, cartItemsTotal, handleShow, products }) {
         onClick={handleShow}
       >
         <UilShoppingBag />
-        <span className=" position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        <span className=" position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
           {cartItemsTotal.total_unique_items
             ? cartItemsTotal.total_unique_items
             : 0}
@@ -168,7 +169,7 @@ function Header({ fetchUrl, cartItemsTotal, handleShow, products }) {
             id="collapsibleNavId"
           >
             <a className="navbar-brand" href="/">
-              ELECTRONICA
+              <BrandName />
             </a>
             {/* SEARCH CATEGORIES */}
             <form className="d-flex my-2 my-lg-0 w-50">

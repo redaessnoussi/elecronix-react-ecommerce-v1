@@ -207,21 +207,21 @@ const Checkout = ({
           <h4 className="mb-4 fw-bold">Payment</h4>
           <div className="d-flex justify-content-between mb-4">
             <Button
-              variant="outline-dark"
+              variant="outline-dark-90"
               size="sm"
               className={fonts.fw_500 + " w-30"}
             >
               Credit Card
             </Button>
             <Button
-              variant="outline-dark"
+              variant="outline-dark-90"
               size="sm"
               className={fonts.fw_500 + " w-30"}
             >
               Bank Transfer
             </Button>
             <Button
-              variant="outline-dark"
+              variant="outline-dark-90"
               size="sm"
               className={fonts.fw_500 + " w-30"}
             >

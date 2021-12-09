@@ -1,23 +1,37 @@
+$primary-100: rgba(244, 107, 91, 0.05);
+$primary: #F46B5B !default;
+$danger: green !default;
+$secondary: #E4E0DA !default;
+$grey: #D0D0D2 !default;
+$light: #dae1e7 !default;
+$dark: #000000 !default;
+$dark-90: #383838 !default;
+
 // Default Theme Color
-$theme-colors: (
-  "primary": #F46B5B,//#0f3460,
-  "secondary": #E4E0DA,
-  "danger": #ff4136,
-  "grey": #D0D0D2,
-  "light": #dae1e7,
-  "dark": #000000
+$theme-colors: ("primary": $primary, //#0f3460,
+  "secondary": $secondary,
+  "danger": $danger,
+  "grey": $grey,
+  "light": $light,
+  "dark": $dark,
+  "dark-90": $dark-90,
 );
 
+body {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 500 !important
+}
+
+// Your variable overrides
+.bg-primary-100 {
+  background-color: $primary-100 !important
+}
+
 // Importing Bootstrap's default variables
-// @import 'variables';
 @import '~bootstrap/scss/bootstrap';
 
 // Default Font
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-body{
-  font-family: 'Inter', sans-serif;
-  font-weight: 500
-}
 
 @import 'navs.module';
 @import 'dropdowns.module';

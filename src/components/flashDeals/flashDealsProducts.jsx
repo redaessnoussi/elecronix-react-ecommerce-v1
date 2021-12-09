@@ -43,7 +43,9 @@ function FlashDeals({ fetchUrl }) {
   function showDiscount(regularPrice, soldPrice) {
     var discount = Math.round(((regularPrice - soldPrice) / soldPrice) * 100);
     return (
-      <span className="badge rounded-pill bg-danger">{discount + "% off"}</span>
+      <span className="badge rounded-pill bg-primary">
+        {discount + "% off"}
+      </span>
     );
   }
 
@@ -163,7 +165,7 @@ function FlashDeals({ fetchUrl }) {
                 <div className="card-body">
                   <h6 className="card-title">{product.names.title}</h6>
                   {fiveStars(product.customerReviews.averageScore)}
-                  <h6 className="text-danger">
+                  <h6 className="text-primary">
                     {addZeroes(product.prices.current.toString())}
                     <strike className="text-black-50 ms-2">
                       {addZeroes(product.prices.regular.toString())}

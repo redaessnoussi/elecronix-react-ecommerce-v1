@@ -10,30 +10,28 @@ function products({ products, addCarts }) {
   return (
     <div className="container pt-5">
       <h1>New Arrival</h1>
-      <Container>
-        <Row>
-          {products.map((product, i) => (
-            <Col md="4" key={i} className="mb-4">
-              <Card className={cards.cards__products + " h-100"}>
-                <Card.Img
-                  variant="top"
-                  src={product.image.url}
-                  className={images.img__products + " mt-4"}
-                />
-                <Card.Body className="d-flex flex-column justify-content-between">
-                  <p>{product.name}</p>
-                  <Button
-                    variant="primary"
-                    onClick={() => addCarts(product.id, 1)}
-                  >
-                    Add to cart
-                  </Button>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
-      </Container>
+      <Row>
+        {products.map((product, i) => (
+          <Col md="4" key={i} className="mb-4">
+            <Card className={cards.cards__products + " h-100"}>
+              <Card.Img
+                variant="top"
+                src={product.image.url}
+                className={images.img__products + " mt-4"}
+              />
+              <Card.Body className="d-flex flex-column justify-content-between">
+                <p>{product.name}</p>
+                <Button
+                  variant="primary"
+                  onClick={() => addCarts(product.id, 1)}
+                >
+                  Add to cart
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
     </div>
   );
 }
