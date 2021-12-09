@@ -7,7 +7,6 @@ import {
   Row,
   Button,
   Accordion,
-  Form,
   Badge,
   Spinner,
   Image,
@@ -16,19 +15,16 @@ import {
 } from "react-bootstrap";
 import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import { Link } from "react-router-dom";
-// FONT AWESOME
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// SOLID ICONS
-import {
-  faPlus,
-  faMinus,
-  faTrashAlt,
-  faTimes,
-} from "@fortawesome/free-solid-svg-icons";
 // REACT UNICONS
-import { UilAngleRightB } from "@iconscout/react-unicons";
+import {
+  UilAngleRightB,
+  UilMinus,
+  UilPlus,
+  UilTimes,
+} from "@iconscout/react-unicons";
 // STYLINGS MODULES
 import cards from "../../styles/cards.module.scss";
+import images from "../../styles/images.module.scss";
 import fonts from "../../styles/typography.module.scss";
 
 const ViewCarts = ({
@@ -36,15 +32,12 @@ const ViewCarts = ({
   updateItemCart,
   removeAllItems,
   checkoutToken,
+  // pagePath,
 }) => {
   const totalItems = cartItemsTotal.total_items;
   const items = cartItemsTotal.line_items;
-  const [shippingCountries, setShippingCountries] = useState({});
-  const [shippingCountry, setShippingCountry] = useState("");
-  const [countrySubdivisions, setCountrySubdivisions] = useState({});
-  const [countrySubdivision, setCountrySubdivision] = useState("");
-  const [shippingOptions, setShippingOptions] = useState({});
-  const [shippingPrice, setShippingPrice] = useState("");
+
+  // console.log(pagePath);
 
   function CustomToggle({ eventKey }) {
     const decoratedOnClick = useAccordionButton(eventKey);
@@ -66,12 +59,13 @@ const ViewCarts = ({
     );
   }
 
-  const LoadingSpinner = (color) => (
+  const LoadingSpinner = ({ color, size }) => (
     <>
       <Spinner
+        variant={color}
         as="span"
         animation="border"
-        size="sm"
+        size={size}
         role="status"
         aria-hidden="true"
       />
@@ -82,8 +76,8 @@ const ViewCarts = ({
   const ReduceItem = ({ itemID, itemQuantity }) => {
     if (itemQuantity === 1) {
       return (
-        <Button variant="light" size="sm" className="text-black-50 disabled">
-          <FontAwesomeIcon icon={faMinus} />
+        <Button variant="grey" size="sm" className="text-black-50 disabled">
+          <UilMinus />
         </Button>
       );
     } else {
@@ -93,7 +87,7 @@ const ViewCarts = ({
           size="sm"
           onClick={() => updateItemCart(itemID, itemQuantity - 1)}
         >
-          <FontAwesomeIcon icon={faMinus} />
+          <UilMinus />
         </Button>
       );
     }
@@ -105,40 +99,50 @@ const ViewCarts = ({
       size="sm"
       onClick={() => updateItemCart(itemID, itemQuantity + 1)}
     >
-      <FontAwesomeIcon icon={faPlus} />
+      <UilPlus />
     </Button>
   );
 
   const CartItems = () => (
     <>
-      {items
-        ? items.map((item, index) => (
-            <div
-              className="d-flex align-items-center border-1 border-primary border-bottom py-4"
-              key={index}
-            >
-              <div className="flex-shrink-0">
-                <img src={item.image.url} alt={item.name} width="70" />
-              </div>
-              <div className="flex-grow-1 ms-4">
-                <h6 className="mt-0">{item.name}</h6>
-                <p className="text-primary">
-                  {item.price.formatted_with_symbol}
-                </p>
-                <div className="align-items-center d-flex">
-                  {/* REDUCE ITEM ON CARTS */}
-                  <ReduceItem itemID={item.id} itemQuantity={item.quantity} />
-                  <span className="mx-3 text-primary">{item.quantity}</span>
-                  {/* INCREASE ITEM ON CARTS */}
-                  <IncreaseItem itemID={item.id} itemQuantity={item.quantity} />
-                </div>
-              </div>
-              <Button variant="btn-link">
-                <FontAwesomeIcon icon={faTimes} />
-              </Button>
+      {items ? (
+        items.map((item, index) => (
+          <div
+            className="d-flex align-items-center border-1 border-primary border-bottom py-4"
+            key={index}
+          >
+            <div className="flex-shrink-0">
+              <img
+                className={images.img_carts_items}
+                src={item.image.url}
+                alt={item.name}
+                width="70"
+                height="70"
+              />
             </div>
-          ))
-        : null}
+            <div className="flex-grow-1 ms-4">
+              <h6 className="mt-0">{item.name}</h6>
+              <p className="text-primary">{item.price.formatted_with_symbol}</p>
+              <div className="align-items-center d-flex">
+                {/* REDUCE ITEM ON CARTS */}
+                <ReduceItem itemID={item.id} itemQuantity={item.quantity} />
+                <span className="mx-3 text-primary">{item.quantity}</span>
+                {/* INCREASE ITEM ON CARTS */}
+                <IncreaseItem itemID={item.id} itemQuantity={item.quantity} />
+              </div>
+            </div>
+            <Button
+              variant="link"
+              onClick={() => removeAllItems(item.id)}
+              className="text-primary"
+            >
+              <UilTimes />
+            </Button>
+          </div>
+        ))
+      ) : (
+        <LoadingSpinner color={"primary"} size={"lg"} />
+      )}
     </>
   );
 
@@ -147,8 +151,8 @@ const ViewCarts = ({
       <Card className={cards.cards__grey25 + " border border-primary mb-4"}>
         <Card.Body className="text-center">
           <CustomToggle eventkey="0" />
-          <Accordion.Collapse eventkey="0" className="mt-3">
-            <InputGroup className="mx-auto w-75">
+          <Accordion.Collapse eventkey="0">
+            <InputGroup className="mx-auto w-75 mt-3">
               <FormControl
                 placeholder="Enter coupon code..."
                 aria-label="Enter coupon code..."
@@ -162,23 +166,6 @@ const ViewCarts = ({
         </Card.Body>
       </Card>
     </Accordion>
-  );
-
-  const CheckoutBtn = () => (
-    <>
-      <Row className="justify-content-between">
-        <Col xs="auto">
-          <h5>
-            <Link to="/">Continue Shopping</Link>
-          </h5>
-        </Col>
-        <Col xs="auto">
-          <Button variant="primary" size="lg" className="px-4">
-            Check Out
-          </Button>
-        </Col>
-      </Row>
-    </>
   );
 
   const EmptyCart = () => (
@@ -198,77 +185,27 @@ const ViewCarts = ({
               {cartItemsTotal.subtotal ? (
                 "$" + cartItemsTotal.subtotal.raw
               ) : (
-                <LoadingSpinner />
+                <LoadingSpinner color={"primary"} size={"sm"} />
               )}
             </p>
           </div>
           <div className="d-grid gap-2">
-            <Button className="py-2">Checkout</Button>
-            <Button
-              variant="link"
-              className={fonts.fw_500 + " text-primary text-decoration-none"}
+            <Link className="btn btn-primary py-2" to="/checkout">
+              Checkout
+            </Link>
+            <Link
+              className={
+                fonts.fw_500 + " btn btn-link text-primary text-decoration-none"
+              }
+              to="/"
             >
               Continue Shopping
-            </Button>
+            </Link>
           </div>
         </Card.Body>
       </Card>
     </>
   );
-
-  useEffect(() => {
-    const fetchShippingContries = async () => {
-      try {
-        const shippingCountries =
-          await commerce.services.localeListShippingCountries(checkoutToken);
-        setShippingCountries(shippingCountries);
-        const entries = Object.entries(shippingCountries).map(
-          ([code, name]) => ({ id: code, lable: name })
-        );
-        const countries = Object.keys(entries[0].lable);
-        setShippingCountry(countries[0]);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    checkoutToken && fetchShippingContries();
-  }, [checkoutToken]);
-
-  useEffect(() => {
-    const fetchCountrySubdivisions = async (countryCode) => {
-      try {
-        const countrySubdivisions =
-          await commerce.services.localeListSubdivisions(countryCode);
-        setCountrySubdivisions(countrySubdivisions);
-        const entries = Object.entries(countrySubdivisions).map(
-          ([code, name]) => ({ id: code, lable: name })
-        );
-        const subdivisions = Object.keys(entries[0].lable);
-        setCountrySubdivision(subdivisions[0]);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    shippingCountry && fetchCountrySubdivisions(shippingCountry);
-  }, [shippingCountry]);
-
-  useEffect(() => {
-    const fetchShippingOptions = async () => {
-      const shippingOptions = await commerce.checkout.getShippingOptions(
-        checkoutToken,
-        {
-          country: shippingCountry,
-          region: countrySubdivision,
-        }
-      );
-      setShippingOptions(shippingOptions);
-      // console.log(shippingOptions);
-      setShippingPrice(shippingOptions[0].price.formatted_with_symbol);
-    };
-
-    countrySubdivision && fetchShippingOptions();
-    // eslint-disable-next-line
-  }, [countrySubdivision]);
 
   return (
     <>

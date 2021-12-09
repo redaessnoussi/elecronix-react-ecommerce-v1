@@ -1,5 +1,13 @@
 .btn{
   box-shadow: none!important;
+  &.btn-primary,
+  &.btn-outline-primary:hover{
+    color: #fff;
+  }
+}
+
+.btn.disabled{
+  opacity: unset!important;
 }
 
 .btn_grey{

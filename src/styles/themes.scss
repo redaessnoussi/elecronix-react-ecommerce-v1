@@ -1,9 +1,11 @@
 // Default Theme Color
 $theme-colors: (
-  "primary": #0f3460,
+  "primary": #F46B5B,//#0f3460,
   "secondary": #E4E0DA,
   "danger": #ff4136,
-  "light": #dae1e7
+  "grey": #D0D0D2,
+  "light": #dae1e7,
+  "dark": #000000
 );
 
 // Importing Bootstrap's default variables
@@ -20,3 +22,4 @@ body{
 @import 'navs.module';
 @import 'dropdowns.module';
 @import 'buttons.module.scss';
+@import 'helpers.module.scss';

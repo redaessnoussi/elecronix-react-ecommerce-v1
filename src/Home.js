@@ -1,19 +1,40 @@
 import React, { Suspense, useState, useEffect } from "react";
+import { Container } from "react-bootstrap";
+import Breadcrumbs from "./components/breadcrumbs/breadcrumbs";
+import CartSteps from "./components/cartSteps/cartSteps";
 import FlashDeals from "./components/flashDeals/flashDealsProducts";
 import Header from "./components/header/header";
 import requests from "./api/request";
 import Products from "./components/products/products";
-import Carts from "./components/carts/carts";
+import CartsCanvas from "./components/carts/cartsCanvas";
 import ViewCarts from "./components/carts/ViewCarts";
 import Checkout from "./components/checkout/checkout";
 import { commerce } from "./lib/commerce";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// React Router
+import {
+  useLocation,
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 function Home() {
   const [products, setProducts] = useState([]);
   const [carts, setCarts] = useState({});
   const [checkoutToken, setcheckoutToken] = useState({});
   const [show, setShow] = useState(false);
+  const [path, setPath] = useState("/");
+
+  const PagePath = () => {
+    const location = useLocation();
+    const pathname = location.pathname;
+    setPath(pathname);
+    console.log(path);
+
+    return null;
+  };
+
+  const Pagename = () => <h1>Page Name</h1>;
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
@@ -74,13 +95,18 @@ function Home() {
           handleShow={handleShow}
           products={products}
         />
-        <Carts
+        <CartsCanvas
           show={show}
           handleClose={handleClose}
           cartItemsTotal={carts}
           updateItemCart={updateItemCart}
           removeAllItems={removeAllItems}
         />
+        <Breadcrumbs />
+        <Container className="text-center pt-5">
+          <Pagename />
+        </Container>
+        <PagePath />
         <Routes>
           <Route
             exact
@@ -97,12 +123,16 @@ function Home() {
             path="/carts"
             element={
               checkoutToken ? (
-                <ViewCarts
-                  cartItemsTotal={carts}
-                  updateItemCart={updateItemCart}
-                  removeAllItems={removeAllItems}
-                  checkoutToken={checkoutToken.id}
-                />
+                <>
+                  <CartSteps />
+                  <ViewCarts
+                    cartItemsTotal={carts}
+                    updateItemCart={updateItemCart}
+                    removeAllItems={removeAllItems}
+                    checkoutToken={checkoutToken.id}
+                    // pagePath={PagePath}
+                  />
+                </>
               ) : (
                 alert("Hello")
               )
@@ -112,12 +142,15 @@ function Home() {
             exact
             path="/checkout"
             element={
-              <Checkout
-                cartItemsTotal={carts}
-                updateItemCart={updateItemCart}
-                removeAllItems={removeAllItems}
-                checkoutToken={checkoutToken.id}
-              />
+              <>
+                <CartSteps />
+                <Checkout
+                  cartItemsTotal={carts}
+                  updateItemCart={updateItemCart}
+                  removeAllItems={removeAllItems}
+                  checkoutToken={checkoutToken.id}
+                />
+              </>
             }
           />
         </Routes>

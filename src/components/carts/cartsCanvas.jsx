@@ -7,7 +7,7 @@ import { UilShoppingBag, UilTimes } from "@iconscout/react-unicons";
 // STYLINGS MODULES
 import images from "../../styles/images.module.scss";
 
-const Carts = ({
+const CartsCanvas = ({
   show,
   handleClose,
   cartItemsTotal,
@@ -23,57 +23,15 @@ const Carts = ({
     </div>
   );
 
-  const reduceItem = (itemID, itemQuantity) => {
-    if (itemQuantity === 1) {
-      return (
-        <Button
-          variant="outline-primary"
-          size="sm"
-          className="rounded-circle disabled"
-        >
-          {/* <FontAwesomeIcon icon={faMinus} /> */}
-        </Button>
-      );
-    } else {
-      return (
-        <Button
-          variant="outline-primary"
-          size="sm"
-          className="rounded-circle"
-          onClick={() => updateItemCart(itemID, itemQuantity - 1)}
-        >
-          {/* <FontAwesomeIcon icon={faMinus} /> */}
-        </Button>
-      );
-    }
-  };
-
   const CartItems = () => (
     <>
       {cartItemsTotal.line_items.map((item, id) => (
         <Card className="border-bottom-0 rounded-0" key={id}>
           <Card.Body>
-            <Row>
-              {/* <Col
-                xs="auto"
-                className="align-items-center d-flex flex-column justify-content-between"
-              >
-                INCREASE ITEM ON CARTS
-                <Button
-                  variant="outline-primary"
-                  size="sm"
-                  className="rounded-circle"
-                  onClick={() => updateItemCart(item.id, item.quantity + 1)}
-                >
-                  <FontAwesomeIcon icon={faPlus} />
-                </Button>
-                <span>{item.quantity}</span>
-                REDUCE ITEM ON CARTS
-                {reduceItem(item.id, item.quantity)}
-              </Col> */}
+            <Row className="align-items-center">
               <Col xs="auto">
                 <img
-                  className={images.img__carts_items + " sm mr-3"}
+                  className={images.img_carts_items + " sm mr-3"}
                   src={item.image.url}
                   alt={item.name}
                   width={100}
@@ -85,14 +43,11 @@ const Carts = ({
                 <p className="small mb-0 fw-bold text-primary">
                   {item.price.formatted_with_symbol} x {item.quantity}
                 </p>
-                {/* <h6 className="text-danger">
-                  {item.line_total.formatted_with_symbol}
-                </h6> */}
               </Col>
               <Col xs="auto">
                 <Button
                   variant="link"
-                  className="text-black"
+                  className="text-primary"
                   onClick={() => removeAllItems(item.id)}
                 >
                   <UilTimes />
@@ -140,4 +95,4 @@ const Carts = ({
   );
 };
 
-export default Carts;
+export default CartsCanvas;
