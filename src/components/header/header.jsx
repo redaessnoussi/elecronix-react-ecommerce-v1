@@ -1,288 +1,194 @@
-import React, { useState } from "react";
-// import { Link } from "react-router-dom";
+import React from "react";
 import BrandName from "../../BrandName";
-// REACT CONTRY FLAGS
-import Flags from "country-flag-icons/react/3x2";
-// REACT CURRENCY SYMBOLS
-import currencyToSymbolMap from "currency-symbol-map/map";
-// REACT UNICONS
 import {
-  UilShoppingBag,
-  UilUser,
-  UilBars,
-  UilSearch,
+  Container,
+  Col,
+  Navbar,
+  Button,
+  Nav,
+  InputGroup,
+  FormControl,
+  Spinner,
+} from "react-bootstrap";
+import {
+  UilInstagram,
+  UilLinkedin,
+  UilTwitter,
+  UilFacebook,
   UilPhone,
-  UilEnvelope,
+  UilEnvelopeAlt,
+  UilUser,
+  UilSearch,
+  UilShoppingBag,
 } from "@iconscout/react-unicons";
-// STYLINGS MODULES
-import buttons from "../../styles/buttons.module.scss";
-import "../../styles/navs.module.scss";
 
-function Header({ fetchUrl, cartItemsTotal, handleShow, products }) {
-  const currencyEntries = Object.entries(currencyToSymbolMap);
-  const [currency, setCurrency] = useState("USD ($)");
+function Header({ handleShow, cartItemsTotal }) {
+  const TopNavbar = () => (
+    <Container>
+      <Navbar bg="white" className="border-bottom">
+        <Container className="align-items-center">
+          {/* SOCIAL MEDIA ICONS */}
+          <SocialMediaIcons />
+          {/* ACCOUNT LOGIN */}
+          <AccountLogin />
+        </Container>
+      </Navbar>
+    </Container>
+  );
 
-  const ShowCurrencies = () =>
-    currencyEntries.map((item, key) => (
-      <a
-        className="dropdown-item"
-        href="!#"
-        key={key}
-        onClick={(e) => setCurrency(e.target.text)}
-      >
-        {item[0] + " (" + item[1] + ")"}
-      </a>
-    ));
+  const MainNavbar = () => (
+    <Container>
+      <Navbar bg="white" className="py-4">
+        <Container className="align-items-center">
+          <Navbar.Brand>
+            {/* LOGO BRAND NAME */}
+            <BrandName />
+          </Navbar.Brand>
+          {/* MENU ITEMS */}
+          <MenuItems />
+          {/* SEARCH BAR */}
+          <Col md="4">
+            <SearchBar />
+          </Col>
+          {/* SHOPPIGN CART WITH NOTIFICATION */}
+          <ShoppingCart />
+        </Container>
+      </Navbar>
+    </Container>
+  );
 
-  const ShowCategories = () =>
-    products.map((product, key) => (
-      <li key={key}>
-        <a className="dropdown-item" href="#!">
-          {product.categories[0].name}
-        </a>
+  const ShoppingCart = () => (
+    <ul className="list-inline mb-0">
+      <li className="list-inline-item me-4">
+        <Button
+          variant="link"
+          className="position-relative p-0"
+          onClick={handleShow}
+        >
+          <UilShoppingBag />
+          <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+            {cartItemsTotal.total_unique_items ? (
+              cartItemsTotal.total_unique_items
+            ) : (
+              <LoadingSpinner color="white" size="sm" />
+            )}
+            <span className="visually-hidden">carts items</span>
+          </span>
+        </Button>
       </li>
-    ));
+      <li className="list-inline-item">
+        <Button variant="link" className="position-relative p-0">
+          <UilEnvelopeAlt />
+        </Button>
+      </li>
+    </ul>
+  );
 
-  const ShowCarts = () => (
+  const LoadingSpinner = ({ color, size }) => (
     <>
-      <button
-        type="button"
-        className={
-          "btn rounded-circle position-relative p-2 " + buttons.btn_grey
-        }
-        onClick={handleShow}
-      >
-        <UilShoppingBag />
-        <span className=" position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
-          {cartItemsTotal.total_unique_items
-            ? cartItemsTotal.total_unique_items
-            : 0}
-          <span className="visually-hidden">products</span>
-        </span>
-      </button>
+      <Spinner
+        variant={color}
+        as="span"
+        animation="border"
+        size={size}
+        role="status"
+        aria-hidden="true"
+      />
+      <span className="visually-hidden">Loading...</span>
     </>
+  );
+
+  const SearchBar = () => (
+    <InputGroup>
+      <FormControl
+        placeholder="Search here"
+        aria-label="Search here"
+        aria-describedby="search"
+        className="bg-light bg-opacity-25 shadow-none"
+      />
+      <Button variant="primary" id="search">
+        <UilSearch />
+      </Button>
+    </InputGroup>
+  );
+
+  const MenuItems = () => (
+    <Nav
+      activeKey="/"
+      onSelect={(selectedKey) => console.log(`selected ${selectedKey}`)}
+    >
+      <Nav.Item className="me-3">
+        <Nav.Link href="/">Home</Nav.Link>
+      </Nav.Item>
+      <Nav.Item className="me-3">
+        <Nav.Link eventKey="about">About</Nav.Link>
+      </Nav.Item>
+      <Nav.Item className="me-3">
+        <Nav.Link eventKey="product">Product</Nav.Link>
+      </Nav.Item>
+      <Nav.Item className="me-3">
+        <Nav.Link eventKey="blog">Blog</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="contact">Contact</Nav.Link>
+      </Nav.Item>
+    </Nav>
+  );
+
+  const SocialMediaIcons = () => (
+    <>
+      <ul className="list-inline mb-0">
+        <li className="list-inline-item">
+          <Button variant="link">
+            <UilInstagram className="text-black-50" />
+          </Button>
+        </li>
+        <li className="list-inline-item">
+          <Button variant="link">
+            <UilFacebook className="text-black-50" />
+          </Button>
+        </li>
+        <li className="list-inline-item">
+          <Button variant="link">
+            <UilTwitter className="text-black-50" />
+          </Button>
+        </li>
+        <li className="list-inline-item">
+          <Button variant="link">
+            <UilLinkedin className="text-black-50" />
+          </Button>
+        </li>
+      </ul>
+    </>
+  );
+
+  const AccountLogin = () => (
+    <ul className="list-inline mb-0">
+      <li className="list-inline-item">
+        <Button variant="link" className="text-decoration-none text-black">
+          <UilPhone className="text-primary me-1" />
+          +12 345 6789 0
+        </Button>
+      </li>
+      <li className="list-inline-item">
+        <Button variant="link" className="text-decoration-none text-black">
+          <UilEnvelopeAlt className="text-primary me-1" />
+          support@tronix.com
+        </Button>
+      </li>
+      <li className="list-inline-item">
+        <Button variant="link" className="text-decoration-none text-black">
+          <UilUser className="text-primary me-1" />
+          Account
+        </Button>
+      </li>
+    </ul>
   );
 
   return (
     <>
-      {/* TOP HEADER NAV BAR */}
-      <div className="bg-primary py-2">
-        <div className="container">
-          <div className="row justify-content-between">
-            {/* STARTS: CONTACT INFO */}
-            <ul className="list-inline w-auto mb-0">
-              <li className="list-inline-item text-white me-4 small">
-                <UilPhone className="me-2" />
-                +88012 3456 7894
-              </li>
-              <li className="list-inline-item text-white small">
-                <UilEnvelope className="me-2" />
-                support@ui-lib.com
-              </li>
-            </ul>
-            {/* ENDS: CONTACT INFO */}
-            {/* FAQ and CONTACT SUPPORT*/}
-            <ul className="list-inline w-auto mb-0">
-              <li className="list-inline-item text-white me-3 small">
-                <a href="!#" className="text-decoration-none text-white">
-                  FAQ's
-                </a>
-              </li>
-              <li className="list-inline-item text-white me-3 small">
-                <a href="!#" className="text-decoration-none text-white">
-                  Contact Support
-                </a>
-              </li>
-              {/* LANGAGUE SELECTION */}
-              <li className="list-inline-item text-white me-3">
-                <div className="dropdown open">
-                  <a
-                    className="dropdown-toggle small text-decoration-none text-white"
-                    type="button"
-                    id="language"
-                    href="!#"
-                    data-bs-toggle="dropdown"
-                    // aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <Flags.GB title="English" width="25" className="me-2" />
-                    EN
-                  </a>
-                  <div className="dropdown-menu" aria-labelledby="language">
-                    <a className="dropdown-item" href="!#">
-                      <Flags.GB title="English" width="25" className="me-1" />
-                      EN
-                    </a>
-                    <a className="dropdown-item" href="!#">
-                      <Flags.FR title="Francais" width="25" className="me-1" />
-                      FR
-                    </a>
-                    <a className="dropdown-item" href="!#">
-                      <Flags.ES title="Spanish" width="25" className="me-1" />
-                      FR
-                    </a>
-                  </div>
-                </div>
-              </li>
-              {/* CURRENCY SELECTION */}
-              <li className="list-inline-item text-white">
-                <div className="dropdown open">
-                  <a
-                    className="dropdown-toggle small text-decoration-none text-white"
-                    type="button"
-                    id="currency"
-                    href="!#"
-                    data-bs-toggle="dropdown"
-                    // aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    {currency}
-                  </a>
-                  <div
-                    className="dropdown-menu shrink"
-                    aria-labelledby="currency"
-                  >
-                    <ShowCurrencies />
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      {/* LOGO WITH SEARCH NAV BAR */}
-      <nav className="navbar navbar-expand-md navbar-light bg-white py-3">
-        <div className="container">
-          <button
-            className="navbar-toggler d-lg-none"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapsibleNavId"
-            aria-controls="collapsibleNavId"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div
-            className="collapse navbar-collapse justify-content-between"
-            id="collapsibleNavId"
-          >
-            <a className="navbar-brand" href="/">
-              <BrandName />
-            </a>
-            {/* SEARCH CATEGORIES */}
-            <form className="d-flex my-2 my-lg-0 w-50">
-              <div className="input-group">
-                <button
-                  className={
-                    "btn btn-outline-light border-end-0 " +
-                    buttons.btn_rounded_left +
-                    " text-black-50"
-                  }
-                  type="button"
-                  id="button-addon1"
-                >
-                  <UilSearch />
-                </button>
-                <input
-                  type="text"
-                  className="form-control border-light border-start-0 text-black-50"
-                  placeholder="Search and hit enter..."
-                  aria-label="Example text with button addon"
-                  aria-describedby="button-addon1"
-                />
-                <button
-                  className={
-                    "btn btn-primary dropdown-toggle " +
-                    buttons.btn_rounded_right
-                  }
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  All Categories
-                </button>
-                <ul className="dropdown-menu dropdown-menu-end">
-                  <ShowCategories />
-                </ul>
-              </div>
-            </form>
-            <div>
-              <button
-                type="button"
-                className={
-                  "btn rounded-circle p-2 " + buttons.btn_grey + " me-3"
-                }
-              >
-                <UilUser />
-              </button>
-              <ShowCarts />
-            </div>
-          </div>
-        </div>
-      </nav>
-      {/* NAVBAR WITH CATEGORIES LIST */}
-      <div className="bg-white py-2 shadow">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-2">
-              {/* DROP DOWN MENU CATEGORIES */}
-              <div className="dropdown">
-                <div className="d-grid gap-1">
-                  <button
-                    className={
-                      "btn d-flex justify-content-around align-items-center " +
-                      buttons.btn_grey +
-                      " dropdown-toggle shadow-sm"
-                    }
-                    type="button"
-                    id="categories"
-                    data-bs-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <UilBars /> Categories
-                  </button>
-                  <div className="dropdown-menu" aria-labelledby="categories">
-                    <ShowCategories />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-10">
-              {/* MENU NAVIGATION */}
-              <ul className="nav justify-content-end">
-                <li className="nav-item">
-                  <a className="nav-link active" href="!#">
-                    Home
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link active" href="!#">
-                    Pages
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link active" href="!#">
-                    User Account
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link active" href="!#">
-                    Vendor Account
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link active" href="!#">
-                    Track My Orders
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+      <TopNavbar />
+      <MainNavbar />
     </>
   );
 }

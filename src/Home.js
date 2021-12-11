@@ -1,18 +1,21 @@
 import React, { Suspense, useState, useEffect } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 // API
 import requests from "./api/request";
 // Components
-import Breadcrumbs from "./components/breadcrumbs/breadcrumbs";
+// import Breadcrumbs from "./components/breadcrumbs/breadcrumbs";
 import CartSteps from "./components/cartSteps/cartSteps";
-import FlashDeals from "./components/flashDeals/flashDealsProducts";
 import Header from "./components/header/header";
-import Products from "./components/products/products";
+import Products from "./components/home/products/products";
 import CartsCanvas from "./components/carts/cartsCanvas";
 import ViewCarts from "./components/carts/ViewCarts";
 import Checkout from "./components/checkout/checkout";
 import Newsletter from "./components/newsletter/newsletter";
 import Footer from "./components/footer/footer";
+import SliderHero from "./components/home/sliderHero/sliderHero";
+import ProductCategoryCard from "./components/home/productCategoryCard/productCategoryCard";
+import CategoriesButtons from "./components/home/categoriesButtons/categoriesButtons";
+import FlashSale from "./components/home/flashSale/flashSale";
 // Library
 import { commerce } from "./lib/commerce";
 // React Router
@@ -29,6 +32,8 @@ function Home() {
   const [checkoutToken, setcheckoutToken] = useState({});
   const [show, setShow] = useState(false);
   const [path, setPath] = useState("/");
+
+  // console.log(requests);
 
   const PagePath = () => {
     const location = useLocation();
@@ -94,12 +99,7 @@ function Home() {
   return (
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
-        <Header
-          fetchUrl={requests.getCategories}
-          cartItemsTotal={carts}
-          handleShow={handleShow}
-          products={products}
-        />
+        <Header cartItemsTotal={carts} handleShow={handleShow} />
         <CartsCanvas
           show={show}
           handleClose={handleClose}
@@ -107,10 +107,10 @@ function Home() {
           updateItemCart={updateItemCart}
           removeAllItems={removeAllItems}
         />
-        <Breadcrumbs />
+        {/* <Breadcrumbs />
         <Container className="text-center pt-5">
           <Pagename />
-        </Container>
+        </Container> */}
         <PagePath />
         <Routes>
           <Route
@@ -118,7 +118,33 @@ function Home() {
             path="/"
             element={
               <>
-                <FlashDeals fetchUrl={requests.trendingViewed} />
+                {/* HERO SECTION WITH SLIDER */}
+                <Container className="py-4">
+                  <Row>
+                    <Col md="8">
+                      <SliderHero />
+                    </Col>
+                    <Col
+                      md="4"
+                      className="d-flex flex-column justify-content-between"
+                    >
+                      <ProductCategoryCard
+                        margin="mb-4"
+                        categoryClass="card_gaming"
+                        categoryName="PC Gaming Collection"
+                      />
+                      <ProductCategoryCard
+                        margin="mb-0"
+                        categoryClass="card_camera"
+                        categoryName="Camera Collection"
+                      />
+                    </Col>
+                  </Row>
+                </Container>
+                {/* PRODUCTS CATEGORIES BUTTONS */}
+                <CategoriesButtons />
+                {/* FLASH SALE */}
+                <FlashSale requests={requests.trendingViewed} />
                 <Products products={products} addCarts={handleAddCart} />
               </>
             }

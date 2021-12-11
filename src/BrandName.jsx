@@ -1,7 +1,11 @@
 import React from "react";
 
 function BrandName() {
-  return <h2 className="text-primary fw-bold mb-0">Tronix</h2>;
+  return (
+    <a href="/" className="text-decoration-none">
+      <h2 className="text-primary fw-bold mb-0">Tronix</h2>
+    </a>
+  );
 }
 
 export default BrandName;

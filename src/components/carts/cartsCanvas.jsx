@@ -78,7 +78,7 @@ const CartsCanvas = ({
   return (
     <>
       <Offcanvas show={show} onHide={handleClose} placement="end">
-        <Offcanvas.Header closeButton>
+        <Offcanvas.Header closeButton className="pb-0">
           <Offcanvas.Title>
             <UilShoppingBag className="me-2" />
             {cartItemsTotal.total_unique_items <= 1
@@ -86,7 +86,7 @@ const CartsCanvas = ({
               : cartItemsTotal.total_unique_items + " Items"}
           </Offcanvas.Title>
         </Offcanvas.Header>
-        <Offcanvas.Body className="px-0">
+        <Offcanvas.Body className="pt-0 px-0 mt-3">
           {totalItems === 0 ? <EmptyCart /> : <CartItems />}
         </Offcanvas.Body>
         <CartButtons />

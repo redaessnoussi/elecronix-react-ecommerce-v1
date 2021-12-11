@@ -1,17 +1,23 @@
 $primary-100: rgba(244, 107, 91, 0.05);
-$primary: #F46B5B !default;
+$primary: #F46B5B!default;//#F46B5B !default;
 $danger: green !default;
 $secondary: #E4E0DA !default;
 $grey: #D0D0D2 !default;
+$grey-70: #FAFAFA!default;
 $light: #dae1e7 !default;
 $dark: #000000 !default;
 $dark-90: #383838 !default;
 
+// Navs Color
+$link-color: $dark-90!important;
+$link-hover-color: $primary!important;
+
 // Default Theme Color
-$theme-colors: ("primary": $primary, //#0f3460,
+$theme-colors: ("primary": $primary,
   "secondary": $secondary,
   "danger": $danger,
   "grey": $grey,
+  "grey-70": $grey-70,
   "light": $light,
   "dark": $dark,
   "dark-90": $dark-90,
@@ -37,3 +43,5 @@ body {
 @import 'dropdowns.module';
 @import 'buttons.module.scss';
 @import 'helpers.module.scss';
+@import 'swiper.module.scss';
+@import 'cards.module.scss';

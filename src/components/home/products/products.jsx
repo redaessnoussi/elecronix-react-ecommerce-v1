@@ -1,14 +1,14 @@
 import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 // STYLINGS MODULES
-import images from "../../styles/images.module.scss";
-import cards from "../../styles/cards.module.scss";
+import images from "../../../styles/images.module.scss";
+import cards from "../../../styles/cards.module.scss";
 
 function products({ products, addCarts }) {
   // console.table(products)
 
   return (
-    <div className="container pt-5">
+    <Container className="pt-5">
       <h1>New Arrival</h1>
       <Row>
         {products.map((product, i) => (
@@ -32,7 +32,7 @@ function products({ products, addCarts }) {
           </Col>
         ))}
       </Row>
-    </div>
+    </Container>
   );
 }
 

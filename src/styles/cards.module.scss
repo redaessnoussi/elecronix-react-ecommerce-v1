@@ -25,3 +25,15 @@
 .cards__grey25{
   background-color: rgba(228, 224, 218, 0.25)!important;
 }
+
+.card_gaming{
+  background:linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(https://i.imgur.com/n2Ica6d.jpg);
+  background-size:cover;
+  background-position-y: -10px;
+}
+
+.card_camera{
+  background:linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(https://i.imgur.com/v2xNPyw.jpg);
+  background-size:cover;
+  background-position-y: -10px;
+}

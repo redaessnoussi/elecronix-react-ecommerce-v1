@@ -12,11 +12,11 @@ function Newsletter() {
   return (
     <div className="bg-primary py-5">
       <Container>
-        <div class="d-flex text-white">
-          <div class="flex-shrink-0">
+        <div className="d-flex text-white">
+          <div className="flex-shrink-0">
             <Image src="./images/newspaper.svg" />
           </div>
-          <div class="flex-grow-1 ms-4 d-flex flex-column justify-content-between">
+          <div className="flex-grow-1 ms-4 d-flex flex-column justify-content-between">
             <h1 className="fw-bold mb-0">Join our newsletter now!</h1>
             <p className="mb-0">
               Register now and get our latest updates and promos.
