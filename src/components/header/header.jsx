@@ -38,7 +38,7 @@ function Header({ handleShow, cartItemsTotal }) {
 
   const MainNavbar = () => (
     <Container>
-      <Navbar bg="white" className="py-4">
+      <Navbar bg="white" className="py-4" expand="md">
         <Container className="align-items-center">
           <Navbar.Brand>
             {/* LOGO BRAND NAME */}
@@ -70,7 +70,7 @@ function Header({ handleShow, cartItemsTotal }) {
             {cartItemsTotal.total_unique_items ? (
               cartItemsTotal.total_unique_items
             ) : (
-              <LoadingSpinner color="white" size="sm" />
+              <LoadingSpinner color="white" size="xs" />
             )}
             <span className="visually-hidden">carts items</span>
           </span>

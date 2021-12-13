@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { ProgressBar } from "react-bootstrap";
 import $ from "jquery";
+// REACT ICONS
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 // API INSTANCE
 import instance from "../../../../api/instance";
 // STYLINGS MODULES
 import images from "../../../../styles/images.module.scss";
-// import icons from "../../styles/icons.module.scss";
+import icons from "../../../../styles/icons.module.scss";
 import cards from "../../../../styles/cards.module.scss";
 import slider from "../../../../styles/slider.module.scss";
 
@@ -14,7 +18,7 @@ function Slider({ requests }) {
   useEffect(() => {
     async function fetchData() {
       const request = await instance.get(requests);
-      // console.log(request.data.results);
+      console.log(request.data.results);
       setTrendingProducts(request.data.results);
     }
     fetchData();
@@ -31,9 +35,7 @@ function Slider({ requests }) {
   function showDiscount(regularPrice, soldPrice) {
     var discount = Math.round(((regularPrice - soldPrice) / soldPrice) * 100);
     return (
-      <span className="badge rounded-pill bg-primary">
-        {discount + "% off"}
-      </span>
+      <span className="badge bg-primary px-3 py-2">{discount + "% OFF"}</span>
     );
   }
 
@@ -43,20 +45,10 @@ function Slider({ requests }) {
     productRate = Math.round(productRate);
     for (let index = 0; index < 5; index++) {
       index < productRate
-        ? stars
-            .push
-            // <FontAwesomeIcon icon={faStar} key={index} className={icons.star} />
-            ()
-        : stars
-            .push
-            // <FontAwesomeIcon
-            //   icon={farStar}
-            //   key={index}
-            //   className={icons.star}
-            // />
-            ();
+        ? stars.push(<AiFillStar className={icons.star} key={index} />)
+        : stars.push(<AiOutlineStar className={icons.star} key={index} />);
     }
-    return <div className="mb-2">{stars}</div>;
+    return <div className="mb-0">{stars}</div>;
   }
 
   // DEFAULT VALUE FOR X POSITION
@@ -78,6 +70,7 @@ function Slider({ requests }) {
 
       if ($scrollWidth - $width === $scrollLeft) {
         moveX = $scrollLeft;
+        $("." + slider.slider_countainer).scrollLeft(0);
       }
       if ($scrollLeft === 0) {
         moveX = $scrollLeft;
@@ -120,22 +113,12 @@ function Slider({ requests }) {
           >
             <div className={cards.cards__products + " card pt-4 h-100"}>
               <div className="col">
-                <div className="justify-content-between mx-0 row">
+                <div className="justify-content-end mx-0 row mb-4">
                   <div className="col-md-auto">
                     {showDiscount(
                       product.prices.regular,
                       product.prices.current
                     )}
-                  </div>
-                  <div className={cards.icons__products + " col-md-2 text-end"}>
-                    {/* Button With View Icon */}
-                    <button type="button" className="btn p-1">
-                      {/* <FontAwesomeIcon icon={faEye} /> */}
-                    </button>
-                    {/* Button With Heart Icon */}
-                    <button type="button" className="btn p-1">
-                      {/* <FontAwesomeIcon icon={faHeart} /> */}
-                    </button>
                   </div>
                 </div>
               </div>
@@ -148,34 +131,43 @@ function Slider({ requests }) {
                 }
                 alt={product.names.title}
               />
-              <div className="card-body">
-                <h6 className="card-title">{product.names.title}</h6>
-                {fiveStars(product.customerReviews.averageScore)}
-                <h6 className="text-primary">
-                  {addZeroes(product.prices.current.toString())}
-                  <strike className="text-black-50 ms-2">
-                    {addZeroes(product.prices.regular.toString())}
-                  </strike>
-                </h6>
+              <div className="card-body d-flex flex-column justify-content-between">
+                <div className="text-center">
+                  <h6 className="card-title">{product.names.title}</h6>
+                  {fiveStars(product.customerReviews.averageScore)}
+                  <h6 className="text-primary">
+                    <strike className="text-black-50">
+                      {addZeroes(product.prices.regular.toString())}
+                    </strike>
+                    <span className="mx-2">-</span>
+                    {addZeroes(product.prices.current.toString())}
+                  </h6>
+                </div>
+                {/* Available Items */}
+                <div>
+                  <div className="d-flex justify-content-between mb-1">
+                    <p className="small mb-0">Available: 10</p>
+                    <p className="small mb-0">Sold: 5</p>
+                  </div>
+                  <ProgressBar now={60} />
+                </div>
               </div>
             </div>
           </div>
         ))}
         <button
           type="button"
-          className={slider.btn_left + " btn btn-primary btn-lg rounded-circle"}
+          className={slider.btn_left + " btn btn-primary"}
           onClick={scrollLeft}
         >
-          {/* <FontAwesomeIcon icon={faChevronLeft} /> */}
+          <FaChevronLeft />
         </button>
         <button
           type="button"
-          className={
-            slider.btn_right + " btn btn-primary btn-lg rounded-circle"
-          }
+          className={slider.btn_right + " btn btn-primary"}
           onClick={scrollRight}
         >
-          {/* <FontAwesomeIcon icon={faChevronRight} /> */}
+          <FaChevronRight />
         </button>
       </div>
       {/* SLIDER BUTTONS */}

@@ -33,4 +33,7 @@ a.btn.btn-primary{
 
 a.btn.btn-outline-primary{
   color: $primary!important;
+  &:hover{
+    color: #fff!important;
+  }
 }

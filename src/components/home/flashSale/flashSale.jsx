@@ -1,16 +1,20 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import CountdownTimer from "./countdownTimer/countdownTimer";
 import Slider from "./slider/slider";
 
 function FlashSale({ requests }) {
   return (
     <Container className="my-5 py-5">
-      <Row className="align-items-center">
-        <Col>
-          <h2 className="display-5 mb-0">Flash Sale</h2>
+      <Row className="align-items-center mb-4">
+        <Col md="auto">
+          <h1 className="fw-bold mb-0">Flash Sale</h1>
+        </Col>
+        <Col md="auto">
+          <CountdownTimer />
         </Col>
         <Col className="text-end">
-          <p className="text-primary fs-5 mb-0">View All</p>
+          <p className="text-primary mb-0">View All</p>
         </Col>
       </Row>
       <Slider requests={requests} />
