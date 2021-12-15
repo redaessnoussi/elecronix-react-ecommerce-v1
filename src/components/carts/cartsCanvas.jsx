@@ -62,11 +62,11 @@ const CartsCanvas = ({
 
   const CartButtons = () => (
     <div className="d-grid gap-2 px-3 py-3">
-      <Link className="btn btn-lg btn-primary" to="/checkout">
-        Check Out Now ({cartItemsTotal.subtotal.formatted_with_symbol})
+      <Link className="btn btn-primary" to="/checkout">
+        Check Out Now
       </Link>
       <Link
-        className="btn btn-lg btn-outline-primary"
+        className="btn btn-outline-primary"
         to="/carts"
         onClick={handleClose}
       >
