@@ -133,7 +133,7 @@ function Slider({ requests }) {
               />
               <div className="card-body d-flex flex-column justify-content-between">
                 <div className="text-center">
-                  <h6 className="card-title">{product.names.title}</h6>
+                  <p>{product.names.title}</p>
                   {fiveStars(product.customerReviews.averageScore)}
                   <h6 className="text-primary">
                     <strike className="text-black-50">

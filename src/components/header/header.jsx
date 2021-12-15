@@ -167,19 +167,19 @@ function Header({ handleShow, cartItemsTotal }) {
       <li className="list-inline-item">
         <Button variant="link" className="text-decoration-none text-black">
           <UilPhone className="text-primary me-1" />
-          +12 345 6789 0
+          <span className="small">+12 345 6789 0</span>
         </Button>
       </li>
       <li className="list-inline-item">
         <Button variant="link" className="text-decoration-none text-black">
           <UilEnvelopeAlt className="text-primary me-1" />
-          support@tronix.com
+          <span className="small">support@tronix.com</span>
         </Button>
       </li>
       <li className="list-inline-item">
         <Button variant="link" className="text-decoration-none text-black">
           <UilUser className="text-primary me-1" />
-          Account
+          <span className="small">Account</span>
         </Button>
       </li>
     </ul>

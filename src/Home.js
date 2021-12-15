@@ -25,6 +25,10 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import BrandNames from "./components/home/brandNames/brandNames";
+import NewArrival from "./components/home/newArrival/newArrival";
+import MiddlePageBanner from "./components/home/middlePageBanner/middlePageBanner";
+import FeaturedProducts from "./components/home/featuredProducts/featuredProducts";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -143,8 +147,20 @@ function Home() {
                 </Container>
                 {/* PRODUCTS CATEGORIES BUTTONS */}
                 <CategoriesButtons />
-                {/* FLASH SALE */}
+                {/* NEW ARRIVAL ITEMS */}
+                <NewArrival products={products} />
+                {/* FLASH SALE SLIDER*/}
                 <FlashSale requests={requests.trendingViewed} />
+                {/* BRAND NAMES SECTION */}
+                <BrandNames />
+                {/* MIDDLE PAGE BANNER SECTION */}
+                <MiddlePageBanner />
+                {/* FEATURED PRODUCTS SECTION */}
+                <FeaturedProducts
+                  products={products}
+                  addCarts={handleAddCart}
+                />
+
                 <Products products={products} addCarts={handleAddCart} />
               </>
             }

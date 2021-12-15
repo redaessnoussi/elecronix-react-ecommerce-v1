@@ -5,7 +5,7 @@ import Slider from "./slider/slider";
 
 function FlashSale({ requests }) {
   return (
-    <Container className="my-5 py-5">
+    <Container className=" py-5">
       <Row className="align-items-center mb-4">
         <Col md="auto">
           <h1 className="fw-bold mb-0">Flash Sale</h1>
