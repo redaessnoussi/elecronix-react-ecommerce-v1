@@ -45,9 +45,9 @@ function CountdownTimer() {
 
   useEffect(() => {
     startTimer();
-    return () => {
-      clearInterval(interval.current);
-    };
+    // return () => {
+    //   clearInterval(interval.current);
+    // };
   });
 
   return (

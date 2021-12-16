@@ -24,37 +24,33 @@ import {
 
 function Header({ handleShow, cartItemsTotal }) {
   const TopNavbar = () => (
-    <Container>
-      <Navbar bg="white" className="border-bottom">
-        <Container className="align-items-center">
-          {/* SOCIAL MEDIA ICONS */}
-          <SocialMediaIcons />
-          {/* ACCOUNT LOGIN */}
-          <AccountLogin />
-        </Container>
-      </Navbar>
-    </Container>
+    <Navbar bg="white" className="border-bottom">
+      <Container className="align-items-center">
+        {/* SOCIAL MEDIA ICONS */}
+        <SocialMediaIcons />
+        {/* ACCOUNT LOGIN */}
+        <AccountLogin />
+      </Container>
+    </Navbar>
   );
 
   const MainNavbar = () => (
-    <Container>
-      <Navbar bg="white" className="py-4" expand="md">
-        <Container className="align-items-center">
-          <Navbar.Brand>
-            {/* LOGO BRAND NAME */}
-            <BrandName />
-          </Navbar.Brand>
-          {/* MENU ITEMS */}
-          <MenuItems />
-          {/* SEARCH BAR */}
-          <Col md="4">
-            <SearchBar />
-          </Col>
-          {/* SHOPPIGN CART WITH NOTIFICATION */}
-          <ShoppingCart />
-        </Container>
-      </Navbar>
-    </Container>
+    <Navbar bg="white" className="py-4" expand="md">
+      <Container className="align-items-center">
+        <Navbar.Brand>
+          {/* LOGO BRAND NAME */}
+          <BrandName />
+        </Navbar.Brand>
+        {/* MENU ITEMS */}
+        <MenuItems />
+        {/* SEARCH BAR */}
+        <Col md="4">
+          <SearchBar />
+        </Col>
+        {/* SHOPPIGN CART WITH NOTIFICATION */}
+        <ShoppingCart />
+      </Container>
+    </Navbar>
   );
 
   const ShoppingCart = () => (
@@ -186,7 +182,7 @@ function Header({ handleShow, cartItemsTotal }) {
   );
 
   return (
-    <div className="position-relative">
+    <div className="container position-relative">
       <TopNavbar />
       <MainNavbar />
     </div>
