@@ -6,7 +6,7 @@ import requests from "./api/request";
 // import Breadcrumbs from "./components/breadcrumbs/breadcrumbs";
 import CartSteps from "./components/cartSteps/cartSteps";
 import Header from "./components/header/header";
-import Products from "./components/home/products/products";
+// import Products from "./components/home/products/products";
 import CartsCanvas from "./components/carts/cartsCanvas";
 import ViewCarts from "./components/carts/ViewCarts";
 import Checkout from "./components/checkout/checkout";
@@ -29,6 +29,7 @@ import BrandNames from "./components/home/brandNames/brandNames";
 import NewArrival from "./components/home/newArrival/newArrival";
 import MiddlePageBanner from "./components/home/middlePageBanner/middlePageBanner";
 import FeaturedProducts from "./components/home/featuredProducts/featuredProducts";
+import TopRatedProducts from "./components/home/topRatedProducts/topRatedProducts";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -160,8 +161,10 @@ function Home() {
                   products={products}
                   addCarts={handleAddCart}
                 />
+                {/* TOP RATED PRODUCTS */}
+                <TopRatedProducts products={products} />
 
-                <Products products={products} addCarts={handleAddCart} />
+                {/* <Products products={products} addCarts={handleAddCart} /> */}
               </>
             }
           />

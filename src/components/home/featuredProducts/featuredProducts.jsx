@@ -79,7 +79,7 @@ function FeaturedProducts({ products, addCarts }) {
                   </h6>
                   <Button
                     className="px-4"
-                    onClick={() => addCarts(products[0].id, 1)}
+                    onClick={() => addCarts(product.id, 1)}
                   >
                     Add to Cart
                   </Button>
@@ -98,12 +98,12 @@ function FeaturedProducts({ products, addCarts }) {
             <BestCollection />
           </Col>
           <Col md="9">
-            <Row>
+            <Row className="mb-3">
               <Col>
-                <h3 className="fw-bold">Featured Products</h3>
+                <h3 className="fw-bold mb-0">Featured Products</h3>
               </Col>
               <Col className="text-end">
-                <p className="text-primary">View All</p>
+                <p className="text-primary mb-0">View All</p>
               </Col>
             </Row>
             <Row>

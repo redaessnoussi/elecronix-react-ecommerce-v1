@@ -60,7 +60,7 @@ function NewArrival({ products }) {
   return (
     <>
       <Container className="py-5">
-        <Row className="align-items-center mb-4">
+        <Row className="align-items-center mb-3">
           <Col>
             <h3 className="fw-bold mb-0">New Arrival</h3>
           </Col>

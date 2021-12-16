@@ -1,5 +1,5 @@
 .cards__products {
-  .icons__products{
+  .icons__products {
     // display: none;
     opacity: 0;
   }
@@ -11,8 +11,8 @@
   //     transition: opacity 0.45s;
   //   }
   // }
-  .description__product{
-    p{
+  .description__product {
+    p {
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
@@ -22,18 +22,20 @@
   }
 }
 
-.cards__grey25{
-  background-color: rgba(228, 224, 218, 0.25)!important;
+.cards__grey25 {
+  background-color: rgba(228, 224, 218, 0.25) !important;
 }
 
-.card_gaming{
-  background:linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(https://i.imgur.com/n2Ica6d.jpg);
-  background-size:cover;
+.card_gaming {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(https://i.imgur.com/n2Ica6d.jpg);
+  background-size: cover;
   background-position-y: -10px;
 }
 
-.card_camera{
-  background:linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(https://i.imgur.com/v2xNPyw.jpg);
-  background-size:cover;
+.card_camera {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(https://i.imgur.com/v2xNPyw.jpg);
+  background-size: cover;
   background-position-y: -10px;
 }

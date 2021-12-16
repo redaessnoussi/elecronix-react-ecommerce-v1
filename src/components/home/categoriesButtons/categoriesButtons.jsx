@@ -4,7 +4,7 @@ import { Button, Col, Container, Image, Row } from "react-bootstrap";
 function CategoriesButtons() {
   return (
     <Container className="py-4">
-      <h3 className="fw-bold mb-4">Category</h3>
+      <h3 className="fw-bold mb-3">Category</h3>
       <Row>
         <Col className="text-center">
           <Button variant="link" className="border mb-3 p-2">
