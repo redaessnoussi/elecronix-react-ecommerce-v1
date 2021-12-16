@@ -18,7 +18,7 @@ function Slider({ requests }) {
   useEffect(() => {
     async function fetchData() {
       const request = await instance.get(requests);
-      console.log(request.data.results);
+      // console.log(request.data.results);
       setTrendingProducts(request.data.results);
     }
     fetchData();
@@ -70,7 +70,6 @@ function Slider({ requests }) {
 
       if ($scrollWidth - $width === $scrollLeft) {
         moveX = $scrollLeft;
-        $("." + slider.slider_countainer).scrollLeft(0);
       }
       if ($scrollLeft === 0) {
         moveX = $scrollLeft;
@@ -97,6 +96,8 @@ function Slider({ requests }) {
     if (moveX < $scrollWidth - $width) {
       moveX = moveX + itemWidth;
       $("." + slider.slider_countainer).scrollLeft(moveX);
+    } else {
+      $("." + slider.slider_countainer).scrollLeft(0);
     }
   }
 

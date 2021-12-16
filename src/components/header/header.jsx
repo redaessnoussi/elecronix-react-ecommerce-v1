@@ -186,10 +186,10 @@ function Header({ handleShow, cartItemsTotal }) {
   );
 
   return (
-    <>
+    <div className="position-relative">
       <TopNavbar />
       <MainNavbar />
-    </>
+    </div>
   );
 }
 

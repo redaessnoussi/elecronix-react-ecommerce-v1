@@ -14,7 +14,7 @@ function TopRatedProducts({ products, addCarts }) {
     products.map(
       (product, index) =>
         index < 4 && (
-          <Col md="3">
+          <Col md="3" key={index}>
             <Card className="h-100">
               <Card.Body className="text-center d-flex flex-column justify-content-between align-items-center">
                 <Image
