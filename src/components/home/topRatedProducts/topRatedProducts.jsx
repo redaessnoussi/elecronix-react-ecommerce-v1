@@ -33,14 +33,14 @@ function TopRatedProducts({ products, addCarts }) {
                       5.0 <span className="mx-2">|</span> Sold 99
                     </span>
                   </div>
-                  <Button variant="primary" className="px-4 me-2">
-                    Add to Cart
-                  </Button>
                   <Button
-                    variant="link"
-                    className="text-decoration-none"
+                    variant="primary"
+                    className="px-4 me-2"
                     onClick={() => addCarts(product.id, 1)}
                   >
+                    Add to Cart
+                  </Button>
+                  <Button variant="link" className="text-decoration-none">
                     <AiFillHeart height="20" width="20" />
                   </Button>
                 </div>
