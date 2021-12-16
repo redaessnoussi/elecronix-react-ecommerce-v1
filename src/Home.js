@@ -49,7 +49,7 @@ function Home() {
     return null;
   };
 
-  const Pagename = () => <h1>Page Name</h1>;
+  // const Pagename = () => <h1>Page Name</h1>;
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
@@ -162,9 +162,10 @@ function Home() {
                   addCarts={handleAddCart}
                 />
                 {/* TOP RATED PRODUCTS */}
-                <TopRatedProducts products={products} />
-
-                {/* <Products products={products} addCarts={handleAddCart} /> */}
+                <TopRatedProducts
+                  products={products}
+                  addCarts={handleAddCart}
+                />
               </>
             }
           />

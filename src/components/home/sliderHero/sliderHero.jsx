@@ -1,6 +1,6 @@
 import React from "react";
 // Importing React Bootsrap
-import { Container, Image, Row, Col } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // import Swiper core and required modules

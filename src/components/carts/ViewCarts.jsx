@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { commerce } from "../../lib/commerce";
+import React from "react";
 import {
   Col,
   Container,

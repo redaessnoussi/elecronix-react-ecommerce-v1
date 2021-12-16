@@ -6,9 +6,9 @@ import { AiFillStar, AiFillHeart } from "react-icons/ai";
 import images from "../../../styles/images.module.scss";
 import icons from "../../../styles/icons.module.scss";
 
-function TopRatedProducts({ products }) {
-  console.log("xxxx");
-  console.log(products);
+function TopRatedProducts({ products, addCarts }) {
+  // console.log("xxxx");
+  // console.log(products);
 
   const TopProductCard = () =>
     products.map(
@@ -36,12 +36,12 @@ function TopRatedProducts({ products }) {
                   <Button variant="primary" className="px-4 me-2">
                     Add to Cart
                   </Button>
-                  <Button variant="link" className="text-decoration-none">
-                    <AiFillHeart
-                      height="20"
-                      width="20"
-                      className="text-black-50"
-                    />
+                  <Button
+                    variant="link"
+                    className="text-decoration-none"
+                    onClick={() => addCarts(product.id, 1)}
+                  >
+                    <AiFillHeart height="20" width="20" />
                   </Button>
                 </div>
               </Card.Body>
