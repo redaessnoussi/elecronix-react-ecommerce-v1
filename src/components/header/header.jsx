@@ -35,7 +35,7 @@ function Header({ handleShow, cartItemsTotal }) {
   );
 
   const MainNavbar = () => (
-    <Navbar bg="white" className="py-4" expand="md">
+    <Navbar bg="white" className="shadow-sm py-4" expand="md">
       <Container className="align-items-center">
         <Navbar.Brand>
           {/* LOGO BRAND NAME */}
@@ -182,10 +182,12 @@ function Header({ handleShow, cartItemsTotal }) {
   );
 
   return (
-    <div className="container position-relative">
+    <>
       <TopNavbar />
-      <MainNavbar />
-    </div>
+      <div className="sticky-top">
+        <MainNavbar />
+      </div>
+    </>
   );
 }
 
