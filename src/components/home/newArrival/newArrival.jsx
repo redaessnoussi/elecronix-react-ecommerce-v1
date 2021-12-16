@@ -20,11 +20,11 @@ function NewArrival({ products }) {
                 <Badge
                   pill
                   bg="primary"
-                  className="fw-light py-3 rounded-circle rounded-pill mb-3 align-self-baseline"
+                  className="fw-light py-3 rounded-circle rounded-pill align-self-baseline"
                 >
                   NEW
                 </Badge>
-                <Row>
+                <Row className="align-items-center">
                   <Col md="auto">
                     <Image
                       src={product.image.url}
