@@ -3,15 +3,15 @@ import { Col, Container, Image, Row } from "react-bootstrap";
 
 function BrandNames() {
   const ImageBrand = ({ filename }) => (
-    <Col xs="5" lg="auto">
-      <Image src={"./images/" + filename} className="img-fluid" />
+    <Col xs="auto" className="me-4">
+      <Image src={"./images/" + filename} width="130" height="40" />
     </Col>
   );
 
   return (
     <>
       <Container className="my-5 py-5">
-        <Row className="justify-content-between align-items-center">
+        <Row className="justify-content-center align-items-baseline">
           <ImageBrand filename="brand-1.svg" />
           <ImageBrand filename="brand-2.svg" />
           <ImageBrand filename="brand-3.svg" />
