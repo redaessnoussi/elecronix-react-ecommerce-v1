@@ -62,7 +62,7 @@ const CartsCanvas = ({
 
   const CartButtons = () => (
     <div className="d-grid gap-2 px-3 py-3">
-      <Link className="btn btn-primary" to="/checkout">
+      <Link className="btn btn-primary" to="/checkout" onClick={handleClose}>
         Check Out Now
       </Link>
       <Link

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import BrandName from "../../BrandName";
 import {
   Container,
@@ -120,7 +121,9 @@ function Header({ handleShow, cartItemsTotal }) {
         <Nav.Link eventKey="about">About</Nav.Link>
       </Nav.Item>
       <Nav.Item className="me-3">
-        <Nav.Link eventKey="product">Product</Nav.Link>
+        <Nav.Link eventKey="product">
+          <Link to="/product">Product</Link>
+        </Nav.Link>
       </Nav.Item>
       <Nav.Item className="me-3">
         <Nav.Link eventKey="blog">Blog</Nav.Link>

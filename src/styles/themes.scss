@@ -1,19 +1,25 @@
 $primary-100: rgba(244, 107, 91, 0.05);
-$primary: #F46B5B!default;//#F46B5B !default;
+$primary: #f46b5b !default; //#F46B5B !default;
 $danger: green !default;
-$secondary: #E4E0DA !default;
-$grey: #D0D0D2 !default;
-$grey-70: #FAFAFA!default;
+$secondary: #e4e0da !default;
+$grey: #d0d0d2 !default;
+$grey-70: #fafafa !default;
 $light: #dae1e7 !default;
 $dark: #000000 !default;
 $dark-90: #383838 !default;
 
-// Navs Color
-$link-color: $dark-90!important;
-$link-hover-color: $primary!important;
+@import "navs.module";
+@import "dropdowns.module";
+@import "buttons.module.scss";
+@import "helpers.module.scss";
+@import "swiper.module.scss";
+@import "cards.module.scss";
+@import "typography.module.scss";
+@import "breadcrumb.module.scss";
 
 // Default Theme Color
-$theme-colors: ("primary": $primary,
+$theme-colors: (
+  "primary": $primary,
   "secondary": $secondary,
   "danger": $danger,
   "grey": $grey,
@@ -24,25 +30,12 @@ $theme-colors: ("primary": $primary,
 );
 
 body {
-  font-family: 'Inter', sans-serif !important;
-  font-weight: 500 !important
-}
-
-// Your variable overrides
-.bg-primary-100 {
-  background-color: $primary-100 !important
+  font-family: "Inter", sans-serif !important;
+  font-weight: 500 !important;
 }
 
 // Importing Bootstrap's default variables
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
 // Default Font
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-@import 'navs.module';
-@import 'dropdowns.module';
-@import 'buttons.module.scss';
-@import 'helpers.module.scss';
-@import 'swiper.module.scss';
-@import 'cards.module.scss';
-@import 'typography.module.scss';
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");

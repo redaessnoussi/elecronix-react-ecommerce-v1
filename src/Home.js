@@ -30,6 +30,7 @@ import NewArrival from "./components/home/newArrival/newArrival";
 import MiddlePageBanner from "./components/home/middlePageBanner/middlePageBanner";
 import FeaturedProducts from "./components/home/featuredProducts/featuredProducts";
 import TopRatedProducts from "./components/home/topRatedProducts/topRatedProducts";
+import Product from "./components/product/product";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -201,6 +202,15 @@ function Home() {
                   removeAllItems={removeAllItems}
                   checkoutToken={checkoutToken.id}
                 />
+              </>
+            }
+          />
+          <Route
+            exact
+            path="/product"
+            element={
+              <>
+                <Product />
               </>
             }
           />

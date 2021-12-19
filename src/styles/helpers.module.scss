@@ -1,3 +1,8 @@
+// Your variable overrides
+.bg-primary-100 {
+  background-color: $primary-100 !important;
+}
+
 .w-30 {
   width: 30% !important;
 }
@@ -7,7 +12,7 @@
 }
 
 .spinner-border-xs {
-  width: 0.7rem;
-  height: 0.7rem;
-  border-width: 0.2em;
+  width: 0.7rem !important;
+  height: 0.7rem !important;
+  border-width: 0.2em !important;
 }
