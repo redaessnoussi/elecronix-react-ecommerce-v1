@@ -274,7 +274,7 @@ function Product() {
   return (
     <>
       <Container className="py-5">
-        <Row>
+        <Row className="mb-5">
           {/* PRODUCT IMAGE SECTION */}
           <Col md={6}>
             <ProductImage />
