@@ -1,21 +1,12 @@
 $primary-100: rgba(244, 107, 91, 0.05);
 $primary: #f46b5b !default; //#F46B5B !default;
-$danger: green !default;
+$danger: #dc3545 !default;
 $secondary: #e4e0da !default;
 $grey: #d0d0d2 !default;
 $grey-70: #fafafa !default;
 $light: #dae1e7 !default;
 $dark: #000000 !default;
 $dark-90: #383838 !default;
-
-@import "navs.module";
-@import "dropdowns.module";
-@import "buttons.module.scss";
-@import "helpers.module.scss";
-@import "swiper.module.scss";
-@import "cards.module.scss";
-@import "typography.module.scss";
-@import "breadcrumb.module.scss";
 
 // Default Theme Color
 $theme-colors: (
@@ -29,13 +20,23 @@ $theme-colors: (
   "dark-90": $dark-90,
 );
 
+// Components modules
+@import "navs.module";
+@import "dropdowns.module";
+@import "buttons.module.scss";
+@import "helpers.module.scss";
+@import "swiper.module.scss";
+@import "cards.module.scss";
+@import "typography.module.scss";
+@import "breadcrumb.module.scss";
+
+// Default Font
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 body {
   font-family: "Inter", sans-serif !important;
   font-weight: 500 !important;
 }
 
-// Importing Bootstrap's default variables
+// Importing Bootstrap's Package
 @import "~bootstrap/scss/bootstrap";
-
-// Default Font
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");

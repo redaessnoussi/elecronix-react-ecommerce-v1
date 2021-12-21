@@ -1,3 +1,20 @@
 // Navs Color
 $link-color: $dark-90 !important;
 $link-hover-color: $primary !important;
+
+.navs-review {
+  .nav-tabs .nav-link {
+    font-weight: 600;
+  }
+
+  .nav-tabs .nav-link.active,
+  .nav-tabs .nav-link.active:hover {
+    border-color: transparent transparent $primary !important;
+    color: $primary !important;
+  }
+
+  .nav-tabs .nav-link:hover {
+    border-color: transparent !important;
+    color: $primary !important;
+  }
+}
