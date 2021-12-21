@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": ".",
+  "homepage": "https://redaessnoussi.github.io/React-ecommerce-v1/build",
   "dependencies": {
     "@chec/commerce.js": "^2.8.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
