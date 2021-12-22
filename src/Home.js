@@ -209,6 +209,7 @@ function Home() {
                   cartItemsTotal={carts}
                   products={products}
                   updateItemCart={updateItemCart}
+                  addCarts={handleAddCart}
                 />
               </>
             }

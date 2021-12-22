@@ -26,7 +26,7 @@ import icons from "../../styles/icons.module.scss";
 import typography from "../../styles/typography.module.scss";
 import { useParams } from "react-router-dom";
 
-function Product({ products, cartItemsTotal, updateItemCart }) {
+function Product({ products, cartItemsTotal, updateItemCart, addCarts }) {
   const { productid } = useParams();
   const items = cartItemsTotal.line_items;
 
@@ -157,19 +157,21 @@ function Product({ products, cartItemsTotal, updateItemCart }) {
   );
 
   const QuantityButtons = () =>
-    items?.map(
-      (item, key) =>
-        item.product_id === productid && (
-          <div className="align-items-center d-flex" key={key}>
-            <p className="text-black-50 mb-0 me-3">Quantity</p>
-            {/* REDUCE ITEM ON CARTS */}
-            <ReduceItem itemID={item?.id} itemQuantity={item?.quantity} />
-            <span className="mx-3 text-primary">{item?.quantity}</span>
-            {/* INCREASE ITEM ON CARTS */}
-            <IncreaseItem itemID={item?.id} itemQuantity={item?.quantity} />
-          </div>
+    items
+      ? items.map(
+          (item, key) =>
+            item.product_id === productid && (
+              <div className="align-items-center d-flex" key={key}>
+                <p className="text-black-50 mb-0 me-3">Quantity</p>
+                {/* REDUCE ITEM ON CARTS */}
+                <ReduceItem itemID={item?.id} itemQuantity={item?.quantity} />
+                <span className="mx-3 text-primary">{item?.quantity}</span>
+                {/* INCREASE ITEM ON CARTS */}
+                <IncreaseItem itemID={item?.id} itemQuantity={item?.quantity} />
+              </div>
+            )
         )
-    );
+      : null;
 
   const AddCartChat = () => {
     return (
@@ -177,7 +179,11 @@ function Product({ products, cartItemsTotal, updateItemCart }) {
         <Button variant="outline-primary" className="px-4 me-2">
           Chat
         </Button>
-        <Button variant="primary" className="px-4">
+        <Button
+          variant="primary"
+          className="px-4"
+          onClick={() => addCarts(productid, 1)}
+        >
           Add to Cart
         </Button>
       </div>
