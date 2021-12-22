@@ -17,6 +17,8 @@ const CartsCanvas = ({
   // console.log(cartItemsTotal);
   const totalItems = cartItemsTotal.total_items;
 
+  // console.log(cartItemsTotal);
+
   const EmptyCart = () => (
     <div className="text-center">
       <p className="lead px-3">Your shopping bag is empty. Start shopping</p>
@@ -39,7 +41,14 @@ const CartsCanvas = ({
                 />
               </Col>
               <Col>
-                <h6 className="small mb-3">{item.name}</h6>
+                <h6 className="small mb-3">
+                  <Link
+                    to={"/product/" + item.product_id}
+                    className="text-decoration-none"
+                  >
+                    {item.name}
+                  </Link>
+                </h6>
                 <p className="small mb-0 fw-bold text-primary">
                   {item.price.formatted_with_symbol} x {item.quantity}
                 </p>
