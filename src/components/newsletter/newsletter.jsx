@@ -14,7 +14,7 @@ function Newsletter() {
       <Container>
         <div className="d-flex text-white">
           <div className="flex-shrink-0">
-            <Image src="./images/newspaper.svg" />
+            <Image src="/images/newspaper.svg" />
           </div>
           <div className="flex-grow-1 ms-4 d-flex flex-column justify-content-between">
             <h1 className="fw-bold mb-0">Join our newsletter now!</h1>

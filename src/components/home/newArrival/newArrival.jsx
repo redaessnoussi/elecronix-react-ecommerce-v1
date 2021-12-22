@@ -5,6 +5,7 @@ import { AiFillStar } from "react-icons/ai";
 // STYLINGS MODULES
 import images from "../../../styles/images.module.scss";
 import icons from "../../../styles/icons.module.scss";
+import { Link } from "react-router-dom";
 
 function NewArrival({ products }) {
   // console.log("rrr");
@@ -35,7 +36,14 @@ function NewArrival({ products }) {
                     md="6"
                     className="d-flex flex-column justify-content-between"
                   >
-                    <p className="mb-2">{product.name}</p>
+                    <p className="mb-2">
+                      <Link
+                        to={"/product/" + product.id}
+                        className="stretched-link text-decoration-none"
+                      >
+                        {product.name}
+                      </Link>{" "}
+                    </p>
                     <h5 className="fw-bold mb-4">
                       {product.price.formatted_with_symbol}
                     </h5>

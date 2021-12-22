@@ -24,12 +24,17 @@ import {
 // STYLINGS MODULES
 import icons from "../../styles/icons.module.scss";
 import typography from "../../styles/typography.module.scss";
+import { useParams } from "react-router-dom";
 
-function Product() {
-  const CategoryBreadcrumb = () => (
+function Product({ products }) {
+  const { productid } = useParams();
+
+  console.log(products);
+
+  const CategoryBreadcrumb = ({ productCategory }) => (
     <Breadcrumb>
       <Breadcrumb.Item href="#">Product</Breadcrumb.Item>
-      <Breadcrumb.Item active>Computer & Laptop</Breadcrumb.Item>
+      <Breadcrumb.Item active>{productCategory}</Breadcrumb.Item>
     </Breadcrumb>
   );
 
@@ -72,17 +77,17 @@ function Product() {
     </Row>
   );
 
-  const ProductDetails = () => <CategoryBreadcrumb />;
+  // const ProductDetails = () => <CategoryBreadcrumb />;
 
-  const ProductImage = () => (
+  const ProductImage = ({ productimage }) => (
     <>
-      <Image src="./images/unavailable.jpg" />
+      <Image src={productimage} className="img_product_main" />
     </>
   );
 
-  const ProductPrice = () => (
+  const ProductPrice = ({ productPrice }) => (
     <div className="d-flex align-items-center">
-      <h2 className="fw-bold mb-0">$29.00</h2>
+      <h2 className="fw-bold mb-0">{productPrice}</h2>
       <p className="text-grey mx-3 mb-0">
         <strike>$99.00</strike>
       </p>
@@ -111,14 +116,13 @@ function Product() {
     </>
   );
 
-  const DescriptionProduct = () => (
+  const DescriptionProduct = ({ productDescription }) => (
     <>
       <h6 className="fw-bold">Description</h6>
-      <p className="text-black-50 fw-normal">
-        Wireless Microphone with the new style, shockproof, clear voice
-        reception that suitable for recording, online meeting, vlogging, and
-        calling. Free casing with high-quality zipper.
-      </p>
+      <div
+        className="text-black-50 fw-normal"
+        dangerouslySetInnerHTML={{ __html: productDescription }}
+      ></div>
     </>
   );
 
@@ -176,17 +180,13 @@ function Product() {
 
   const ReviewComment = ({ name, avatar }) => (
     <>
-      <div class="d-flex align-items-center mb-3">
-        <div class="flex-shrink-0">
-          <Image
-            src={"./images/" + avatar + ".png"}
-            alt="avatar-1"
-            width="50"
-          />
+      <div className="d-flex align-items-center mb-3">
+        <div className="flex-shrink-0">
+          <Image src={"/images/" + avatar + ".png"} alt="avatar-1" width="50" />
         </div>
-        <div class="flex-grow-1 ms-3">
-          <h6 class="mt-0">{name}</h6>
-          <div class="d-flex align-items-center">
+        <div className="flex-grow-1 ms-3">
+          <h6 className="mt-0">{name}</h6>
+          <div className="d-flex align-items-center">
             <p className="mb-0 fw-bold text-danger me-2 small">5.0</p>
             <ProductStarsRatings />
             <p className="text-black-50 mb-0 ms-2 small">1 Month Ago</p>
@@ -271,40 +271,80 @@ function Product() {
     </>
   );
 
+  const ProductSlider = ({ imageAttributes }) => (
+    <>
+      <Row className="mt-4">
+        {imageAttributes.map(
+          (image, key) =>
+            key < 3 && (
+              <Col md={4} key={key}>
+                <Image src={image.url} className="img__products_2" />
+              </Col>
+            )
+        )}
+      </Row>
+    </>
+  );
+
   return (
     <>
-      <Container className="py-5">
-        <Row className="mb-5">
-          {/* PRODUCT IMAGE SECTION */}
-          <Col md={6}>
-            <ProductImage />
-            {/* SLIDER WILL BE HERE */}
-          </Col>
-          {/* PRODUCT DETAILS SECTION */}
-          <Col md={6} className="d-flex flex-column justify-content-between">
-            <div>
-              <ProductDetails />
-              <ProductStates />
-              <h2 className="fw-normal mb-3">Wireless Microphone</h2>
-              <ProductPrice />
-              <ShippingProduct />
-              <DescriptionProduct />
-            </div>
-            <div className="d-flex justify-content-between">
-              <QuantityButtons />
-              <AddCartChat />
-            </div>
-          </Col>
-        </Row>
-        <Row className="align-items-center">
-          <Col md={6}>
-            <NavsTabs />
-          </Col>
-          <Col md={6}>
-            <AddRating />
-          </Col>
-        </Row>
-      </Container>
+      {products?.map(
+        (product, key) =>
+          product.id === productid && (
+            <Container className="py-5" key={key}>
+              <Row className="mb-5">
+                {/* PRODUCT IMAGE SECTION */}
+                <Col md={6} className="text-center">
+                  <ProductImage
+                    productimage={
+                      product.image?.url
+                        ? product.image?.url
+                        : "/images/unavailable.jpg"
+                    }
+                  />
+                  {/* SLIDER WILL BE HERE */}
+                  <ProductSlider imageAttributes={product.assets} />
+                </Col>
+                {/* PRODUCT DETAILS SECTION */}
+                <Col
+                  md={6}
+                  className="d-flex flex-column justify-content-between"
+                >
+                  <div>
+                    <CategoryBreadcrumb
+                      productCategory={
+                        product.categories[0]?.name
+                          ? product.categories[0].name
+                          : "Others"
+                      }
+                    />
+                    <ProductStates />
+                    <h2 className="fw-normal mb-3">{product.name}</h2>
+                    <ProductPrice
+                      productPrice={product.price?.formatted_with_symbol}
+                    />
+                    <ShippingProduct />
+                    <DescriptionProduct
+                      productDescription={product?.description}
+                    />
+                  </div>
+                  <div className="d-flex justify-content-between">
+                    <QuantityButtons />
+                    <AddCartChat />
+                  </div>
+                </Col>
+              </Row>
+              <Row className="align-items-center">
+                <Col md={6}>
+                  <NavsTabs />
+                </Col>
+                <Col md={6}>
+                  <AddRating />
+                </Col>
+              </Row>
+            </Container>
+          )
+      )}
     </>
   );
 }

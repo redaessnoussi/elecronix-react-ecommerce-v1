@@ -10,6 +10,7 @@ import {
   InputGroup,
   FormControl,
   Spinner,
+  // NavLink,
 } from "react-bootstrap";
 import {
   UilInstagram,
@@ -118,18 +119,18 @@ function Header({ handleShow, cartItemsTotal }) {
         <Nav.Link href="/">Home</Nav.Link>
       </Nav.Item>
       <Nav.Item className="me-3">
-        <Nav.Link eventKey="about">About</Nav.Link>
+        <Nav.Link eventkey="about">About</Nav.Link>
       </Nav.Item>
       <Nav.Item className="me-3">
-        <Nav.Link eventKey="product">
-          <Link to="/product">Product</Link>
-        </Nav.Link>
+        <Link eventkey="product" to="/product" className="nav-link">
+          Product
+        </Link>
       </Nav.Item>
       <Nav.Item className="me-3">
-        <Nav.Link eventKey="blog">Blog</Nav.Link>
+        <Nav.Link eventkey="blog">Blog</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="contact">Contact</Nav.Link>
+        <Nav.Link eventkey="contact">Contact</Nav.Link>
       </Nav.Item>
     </Nav>
   );

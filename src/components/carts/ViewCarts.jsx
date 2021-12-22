@@ -44,7 +44,7 @@ const ViewCarts = ({
     return (
       <>
         <Badge bg="primary" className="p-2 rounded-3">
-          <Image src="./images/coupon.svg" width="20" />
+          <Image src="/images/coupon.svg" width="20" />
         </Badge>
         <Button
           variant="link"

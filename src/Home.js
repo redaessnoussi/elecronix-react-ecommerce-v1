@@ -207,10 +207,10 @@ function Home() {
           />
           <Route
             exact
-            path="/product"
+            path="/product/:productid"
             element={
               <>
-                <Product />
+                <Product products={products} />
               </>
             }
           />

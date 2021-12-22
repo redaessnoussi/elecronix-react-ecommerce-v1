@@ -25,7 +25,7 @@ function SliderHero() {
       className="mySwiper"
     >
       <SwiperSlide>
-        <Image src="./images/hero-1.jpg" fluid />
+        <Image src="/images/hero-1.jpg" fluid />
         <div className="position-absolute top-50 start-0 translate-middle-y pt-5 ps-5 w-50">
           <h3 className="fw-bold">This season’s perfect pair</h3>
           <p>
@@ -35,7 +35,7 @@ function SliderHero() {
         </div>
       </SwiperSlide>
       <SwiperSlide>
-        <Image src="./images/hero-2.jpg" fluid />
+        <Image src="/images/hero-2.jpg" fluid />
         <div className="position-absolute top-50 start-0 translate-middle-y pt-5 ps-5 w-50">
           <h3 className="fw-bold">
             Save up to $2,500 on Samsung Neo QLED 8K TVs
@@ -44,7 +44,7 @@ function SliderHero() {
         </div>
       </SwiperSlide>
       <SwiperSlide>
-        <Image src="./images/hero-3.jpg" fluid />
+        <Image src="/images/hero-3.jpg" fluid />
         <div className="position-absolute top-50 start-0 translate-middle-y pt-5 ps-5 w-50">
           <h5>Extended Black Friday offers</h5>
           <h3 className="fw-bold">Get up to $1,000 off select Refrigerators</h3>
