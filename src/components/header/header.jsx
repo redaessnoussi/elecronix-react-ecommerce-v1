@@ -9,7 +9,7 @@ import {
   Nav,
   InputGroup,
   FormControl,
-  Spinner,
+  // Spinner,
   // NavLink,
 } from "react-bootstrap";
 import {
@@ -64,14 +64,13 @@ function Header({ handleShow, cartItemsTotal }) {
           onClick={handleShow}
         >
           <UilShoppingBag />
-          <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
-            {cartItemsTotal.total_unique_items ? (
-              cartItemsTotal.total_unique_items
-            ) : (
-              <LoadingSpinner color="white" size="xs" />
+          {cartItemsTotal.total_items !== undefined &&
+            cartItemsTotal.total_unique_items !== 0 && (
+              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                {cartItemsTotal.total_unique_items}
+                <span className="visually-hidden">carts items</span>
+              </span>
             )}
-            <span className="visually-hidden">carts items</span>
-          </span>
         </Button>
       </li>
       <li className="list-inline-item">
@@ -82,19 +81,19 @@ function Header({ handleShow, cartItemsTotal }) {
     </ul>
   );
 
-  const LoadingSpinner = ({ color, size }) => (
-    <>
-      <Spinner
-        variant={color}
-        as="span"
-        animation="border"
-        size={size}
-        role="status"
-        aria-hidden="true"
-      />
-      <span className="visually-hidden">Loading...</span>
-    </>
-  );
+  // const LoadingSpinner = ({ color, size }) => (
+  //   <>
+  //     <Spinner
+  //       variant={color}
+  //       as="span"
+  //       animation="border"
+  //       size={size}
+  //       role="status"
+  //       aria-hidden="true"
+  //     />
+  //     <span className="visually-hidden">Loading...</span>
+  //   </>
+  // );
 
   const SearchBar = () => (
     <InputGroup>

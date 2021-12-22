@@ -165,8 +165,8 @@ const Checkout = ({
             </Col>
             <Col className="text-end">
               <p className="mb-0">
-                {shippingOptions[0] && shippingOptions[0] !== 0 ? (
-                  "$" + cartItemsTotal.subtotal.raw
+                {cartItemsTotal.subtotal?.raw !== undefined ? (
+                  "$" + cartItemsTotal.subtotal?.raw
                 ) : (
                   <LoadingSpinner color={"dark"} />
                 )}
@@ -179,8 +179,8 @@ const Checkout = ({
             </Col>
             <Col className="text-end">
               <p className="mb-0">
-                {shippingOptions[0] && shippingOptions[0] !== 0 ? (
-                  shippingPrice + " " + shippingOptions[0].description
+                {cartItemsTotal.subtotal?.raw !== undefined && shippingPrice ? (
+                  shippingPrice + " " + shippingOptions[0]?.description
                 ) : (
                   <LoadingSpinner color={"dark"} />
                 )}
@@ -194,9 +194,10 @@ const Checkout = ({
             </Col>
             <Col className="text-end">
               <h5 className="text-primary mb-0">
-                {shippingOptions[0] && shippingOptions[0] !== 0 && "$"}
-                {shippingOptions[0] && shippingOptions[0] !== 0 ? (
-                  cartItemsTotal.subtotal.raw + shippingOptions[0].price.raw
+                {cartItemsTotal.subtotal?.raw !== undefined &&
+                shippingOptions[0] ? (
+                  "$" +
+                  (cartItemsTotal?.subtotal.raw + shippingOptions[0]?.price.raw)
                 ) : (
                   <LoadingSpinner color={"primary"} />
                 )}

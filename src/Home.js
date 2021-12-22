@@ -84,17 +84,12 @@ function Home() {
   useEffect(() => {
     // cart_M5Q3NxB33B2nmw
     const generateToken = async () => {
-      try {
-        const token = await commerce.checkout.generateToken(carts.id, {
-          type: "cart",
-        });
-        setcheckoutToken(token);
-        // console.log(token);
-      } catch (error) {
-        console.log(error);
-      }
+      const token = await commerce.checkout.generateToken(carts.id, {
+        type: "cart",
+      });
+      setcheckoutToken(token);
     };
-    carts.id && generateToken();
+    carts?.total_items && generateToken();
   }, [carts]);
 
   // commerce.cart.empty()
