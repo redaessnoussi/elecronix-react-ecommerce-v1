@@ -5,6 +5,7 @@ import { AiFillStar, AiFillHeart } from "react-icons/ai";
 // STYLINGS MODULES
 import images from "../../../styles/images.module.scss";
 import icons from "../../../styles/icons.module.scss";
+import { Link } from "react-router-dom";
 
 function TopRatedProducts({ products, addCarts }) {
   // console.log("xxxx");
@@ -22,7 +23,14 @@ function TopRatedProducts({ products, addCarts }) {
                   className={images.img__products_2}
                 />
                 <div>
-                  <p>{product.name}</p>
+                  <p>
+                    <Link
+                      to={"/product/" + product.id}
+                      className="text-decoration-none"
+                    >
+                      {product.name}
+                    </Link>
+                  </p>
                   <div className="d-flex justify-content-center align-items-center mb-3">
                     <AiFillStar
                       className={icons.star + " me-2"}

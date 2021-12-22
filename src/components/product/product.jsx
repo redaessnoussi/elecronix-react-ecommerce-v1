@@ -26,10 +26,12 @@ import icons from "../../styles/icons.module.scss";
 import typography from "../../styles/typography.module.scss";
 import { useParams } from "react-router-dom";
 
-function Product({ products }) {
+function Product({ products, cartItemsTotal, updateItemCart }) {
   const { productid } = useParams();
+  const items = cartItemsTotal.line_items;
 
-  console.log(products);
+  // console.log(items[0].product_id);
+  // console.log(products);
 
   const CategoryBreadcrumb = ({ productCategory }) => (
     <Breadcrumb>
@@ -63,7 +65,7 @@ function Product({ products }) {
   );
 
   const ProductStates = () => (
-    <Row className="align-items-center">
+    <Row className="align-items-center mb-2">
       <Col>
         <div className="d-flex align-items-center">
           <p className="me-2 mb-0">5.0</p>
@@ -137,7 +139,7 @@ function Product({ products }) {
       return (
         <Button
           variant="primary"
-          // onClick={() => updateItemCart(itemID, itemQuantity - 1)}
+          onClick={() => updateItemCart(itemID, itemQuantity - 1)}
         >
           <AiOutlineMinus />
         </Button>
@@ -148,22 +150,26 @@ function Product({ products }) {
   const IncreaseItem = ({ itemID, itemQuantity }) => (
     <Button
       variant="primary"
-      // onClick={() => updateItemCart(itemID, itemQuantity + 1)}
+      onClick={() => updateItemCart(itemID, itemQuantity + 1)}
     >
       <AiOutlinePlus />
     </Button>
   );
 
-  const QuantityButtons = () => (
-    <div className="align-items-center d-flex">
-      <p className="text-black-50 mb-0 me-3">Quantity</p>
-      {/* REDUCE ITEM ON CARTS */}
-      <ReduceItem itemID="{item.id}" itemQuantity="{item.quantity}" />
-      <span className="mx-3 text-primary">{"item.quantity"}</span>
-      {/* INCREASE ITEM ON CARTS */}
-      <IncreaseItem itemID="{item.id}" itemQuantity="{item.quantity}" />
-    </div>
-  );
+  const QuantityButtons = () =>
+    items?.map(
+      (item, key) =>
+        item.product_id === productid && (
+          <div className="align-items-center d-flex" key={key}>
+            <p className="text-black-50 mb-0 me-3">Quantity</p>
+            {/* REDUCE ITEM ON CARTS */}
+            <ReduceItem itemID={item?.id} itemQuantity={item?.quantity} />
+            <span className="mx-3 text-primary">{item?.quantity}</span>
+            {/* INCREASE ITEM ON CARTS */}
+            <IncreaseItem itemID={item?.id} itemQuantity={item?.quantity} />
+          </div>
+        )
+    );
 
   const AddCartChat = () => {
     return (

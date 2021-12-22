@@ -11,6 +11,7 @@ import {
 // STYLINGS MODULES
 import images from "../../../styles/images.module.scss";
 import badges from "../../../styles/badges.module.scss";
+import { Link } from "react-router-dom";
 
 function FeaturedProducts({ products, addCarts }) {
   // console.log("zzz");
@@ -65,7 +66,14 @@ function FeaturedProducts({ products, addCarts }) {
                     src={product.image.url}
                     className={images.img__products_2}
                   />
-                  <p>{product.name}</p>
+                  <p>
+                    <Link
+                      to={"/product/" + product.id}
+                      className="text-decoration-none"
+                    >
+                      {product.name}
+                    </Link>
+                  </p>
                   <h6 className="text-primary mb-4">
                     <strike className="text-black-50">
                       {"$" +

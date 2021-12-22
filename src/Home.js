@@ -205,7 +205,11 @@ function Home() {
             path="/product/:productid"
             element={
               <>
-                <Product products={products} />
+                <Product
+                  cartItemsTotal={carts}
+                  products={products}
+                  updateItemCart={updateItemCart}
+                />
               </>
             }
           />
