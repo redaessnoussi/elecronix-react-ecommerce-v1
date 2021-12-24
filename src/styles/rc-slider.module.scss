@@ -1,0 +1,21 @@
+.rc-slider-track {
+  background-color: $primary;
+}
+.rc-slider-handle {
+  border: solid 2px $primary;
+}
+.rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging {
+  border-color: $primary;
+  box-shadow: 0 0 0 5px $primary;
+}
+
+.rc-slider-handle-click-focused:focus {
+  border-color: $primary;
+}
+.rc-slider-handle:hover {
+  border-color: $primary;
+}
+.rc-slider-handle:active {
+  border-color: $primary;
+  box-shadow: 0 0 5px $primary;
+}

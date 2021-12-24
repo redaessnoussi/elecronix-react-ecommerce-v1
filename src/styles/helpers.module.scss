@@ -16,3 +16,25 @@
   height: 0.7rem !important;
   border-width: 0.2em !important;
 }
+
+.categories {
+  /* width */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background-color: $grey;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $primary !important;
+  }
+}
+
+.categories-filter {
+  max-height: 214px;
+  overflow-y: scroll;
+}

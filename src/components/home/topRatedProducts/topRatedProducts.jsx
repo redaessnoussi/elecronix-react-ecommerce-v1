@@ -49,7 +49,7 @@ function TopRatedProducts({ products, addCarts }) {
                     Add to Cart
                   </Button>
                   <Button variant="link" className="text-decoration-none">
-                    <AiFillHeart className="text-danger" />
+                    <AiFillHeart className="text-primary" />
                   </Button>
                 </div>
               </Card.Body>

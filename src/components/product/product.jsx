@@ -26,6 +26,31 @@ import icons from "../../styles/icons.module.scss";
 import typography from "../../styles/typography.module.scss";
 import { useParams } from "react-router-dom";
 
+export const ReviewSold = () => (
+  <p className="small text-black-50 ms-2 mb-0">Review (12) | Sold 99</p>
+);
+
+export const ProductStarsRatings = () => (
+  <>
+    <p className="me-2 mb-0">5.0</p>
+    <AiFillStar className={icons.star} width="20" height="20" />
+    <AiFillStar className={icons.star} width="20" height="20" />
+    <AiFillStar className={icons.star} width="20" height="20" />
+    <AiFillStar className={icons.star} width="20" height="20" />
+    <AiFillStar className={icons.star} width="20" height="20" />
+  </>
+);
+
+export const WishList = () => (
+  <Button
+    variant="link"
+    className="ms-auto px-0 d-flex align-items-center text-decoration-none"
+  >
+    <AiFillHeart className={icons.wish_heart + " text-primary me-1"} />
+    <p className={typography.fw_600 + " small mb-0"}>Add to Wishlist</p>
+  </Button>
+);
+
 function Product({ products, cartItemsTotal, updateItemCart, addCarts }) {
   const { productid } = useParams();
   const items = cartItemsTotal.line_items;
@@ -40,35 +65,10 @@ function Product({ products, cartItemsTotal, updateItemCart, addCarts }) {
     </Breadcrumb>
   );
 
-  const ProductStarsRatings = () => (
-    <>
-      <AiFillStar className={icons.star} width="20" height="20" />
-      <AiFillStar className={icons.star} width="20" height="20" />
-      <AiFillStar className={icons.star} width="20" height="20" />
-      <AiFillStar className={icons.star} width="20" height="20" />
-      <AiFillStar className={icons.star} width="20" height="20" />
-    </>
-  );
-
-  const ReviewSold = () => (
-    <p className="small text-black-50 ms-2 mb-0">Review (12) | Sold 99</p>
-  );
-
-  const WishList = () => (
-    <Button
-      variant="link"
-      className="d-flex align-items-center text-decoration-none"
-    >
-      <AiFillHeart className={icons.wish_heart + " text-danger me-1"} />
-      <p className={typography.fw_600 + " mb-0"}>Add to Wishlist</p>
-    </Button>
-  );
-
   const ProductStates = () => (
     <Row className="align-items-center mb-2">
       <Col>
         <div className="d-flex align-items-center">
-          <p className="me-2 mb-0">5.0</p>
           <ProductStarsRatings />
           <ReviewSold />
         </div>

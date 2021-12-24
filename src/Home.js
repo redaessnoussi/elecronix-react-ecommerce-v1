@@ -7,6 +7,7 @@ import requests from "./api/request";
 import CartSteps from "./components/cartSteps/cartSteps";
 import Header from "./components/header/header";
 // import Products from "./components/home/products/products";
+import SearchProducts from "./components/searchProducts/searchProducts";
 import CartsCanvas from "./components/carts/cartsCanvas";
 import ViewCarts from "./components/carts/ViewCarts";
 import Checkout from "./components/checkout/checkout";
@@ -214,6 +215,15 @@ function Home() {
               </>
             }
           />
+          <Route
+            exact
+            path="/search"
+            element={
+              <>
+                <SearchProducts />
+              </>
+            }
+          ></Route>
         </Routes>
         <Newsletter />
         <Footer />
