@@ -1,5 +1,5 @@
-// import React, { useState, useEffect } from "react";
-import React from "react";
+import React, { useState } from "react";
+// import React from "react";
 import {
   Badge,
   Button,
@@ -9,30 +9,43 @@ import {
   Form,
   Image,
   Row,
+  Pagination,
 } from "react-bootstrap";
+// import Pagination from "react-bootstrap/Pagination";
 import { FaList } from "react-icons/fa";
 import { IoGridSharp } from "react-icons/io5";
 import Slider from "rc-slider";
 import "../../../node_modules/rc-slider/assets/index.css";
 import { ProductStarsRatings, ReviewSold, WishList } from "../product/product";
+import { Link } from "react-router-dom";
 
-function SearchProducts() {
-  // const [filterPriceRange, setFilterPriceRange] = useState([100, 600]);
-  // // const ref = useRef(initialValue)
-  // // console.log(filterPriceRange);
+function SearchProducts({ products, addCarts }) {
+  const [currentPage, setCurrentPage] = useState(1);
+  // let priceFilter = [0, 6000];
+  const [priceFilter, setpriceFilter] = useState([0, 6000]);
+  // const minMaxValues = [0, 400];
+  const postsPerPage = 5;
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const productsOnPage = products.filter((product) => {
+    return (
+      product.price.raw >= priceFilter[0] && product.price.raw <= priceFilter[1]
+    );
+  });
+  // Filter Products By Price
+  const currentProducts = products
+    .filter((product) => {
+      return (
+        product.price.raw >= priceFilter[0] &&
+        product.price.raw <= priceFilter[1]
+      );
+    })
+    .slice(indexOfFirstPost, indexOfLastPost);
 
-  // const priceRange = (value) => {
-  //   // console.log(value);
-  //   setFilterPriceRange(value);
-  // };
+  const productsViewing = currentProducts.length;
 
-  // useEffect(() => {
-  //   priceRange();
-  //   console.log(filterPriceRange);
-  //   // return () => {
-  //   //   filterPriceRange(value)
-  //   // };
-  // }, [filterPriceRange]);
+  const pagesNumber = Math.ceil(productsOnPage.length / postsPerPage);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const CategoriesFilter = () => (
     <div className="categories">
@@ -123,14 +136,21 @@ function SearchProducts() {
       <h6 className="mb-3">Filter by Price</h6>
       <Range
         min={0}
-        max={5000}
-        defaultValue={[100, 600]}
+        max={6000}
+        defaultValue={[0, 6000]}
         tipFormatter={(value) => `$${value}`}
-        // onChange={(value) => priceRange(value)}
+        step={100}
+        // onChange={(value) => setpriceFilter(value)}
         className="mb-3"
+        // value={(value) => setpriceFilter(value)}
       />
       <p className="text-black-50 small mb-0">
-        Price: <span className="text-black">$100 - $250</span>
+        Price:{" "}
+        <span className="text-black">
+          {"$"}
+          {priceFilter[0]} - {"$"}
+          {priceFilter[1]}
+        </span>
       </p>
       <hr className="my-4" />
     </>
@@ -161,8 +181,8 @@ function SearchProducts() {
 
   const ViewingProducts = () => (
     <p className="text-black-50 small mb-0">
-      Viewing <span className="text-black">20</span> of{" "}
-      <span className="text-black">160</span> product
+      Viewing <span className="text-black">{productsViewing}</span> of{" "}
+      <span className="text-black">{productsViewing}</span> product
     </p>
   );
 
@@ -176,7 +196,7 @@ function SearchProducts() {
       </Button>
       <Row>
         <Form.Label column="sm" md="auto" className="text-black-50">
-          Large Text
+          Sort by
         </Form.Label>
         <Col>
           <Form.Select size="sm">
@@ -192,41 +212,80 @@ function SearchProducts() {
 
   const ListViewProduct = () => (
     <>
-      <Col sm="12" className="mb-3 p-4 border">
-        <div className="d-flex align-items-center">
-          <Image
-            src="https://pisces.bbystatic.com/prescaled/500/500/image2/BestBuy_US/images/products/6084/6084400_sd.jpg"
-            alt="unavailable"
-            className="img__products"
-          />
-          <div className="ms-4">
-            <div className="d-flex align-items-center mb-4">
-              <ProductStarsRatings />
-              <ReviewSold />
-            </div>
-            <Row className="align-items-end row">
-              <Col md="8">
-                <h5 className="fw-bold mb-4">USB Speaker Portable</h5>
-                <p className="text-black-50">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore.
-                </p>
-                <Button variant="primary" className="px-4">
-                  Add to Cart
-                </Button>
-              </Col>
-              <Col md="4" className="text-end">
-                <h5 className="text-black-50 text-decoration-line-through">
-                  $39.99
-                </h5>
-                <h3 className="text-primary mb-4">$29.99</h3>
-                <WishList />
-              </Col>
-            </Row>
-          </div>
-        </div>
-      </Col>
+      {currentProducts.map(
+        (product, key) =>
+          key <= postsPerPage && (
+            <Col sm="12" className="mb-3 p-4 border" key={key}>
+              <div className="d-flex align-items-center">
+                <Image
+                  src={product.image.url}
+                  alt={product.name}
+                  className="img_products_search"
+                />
+                <div className="ms-4">
+                  <div className="d-flex align-items-center mb-4">
+                    <ProductStarsRatings />
+                    <ReviewSold />
+                  </div>
+                  <Row className="align-items-end row">
+                    <Col md="8">
+                      <h5 className="fw-bold lh-base mb-4">
+                        <Link
+                          to={"/product/" + product.id}
+                          className="text-decoration-none"
+                        >
+                          {product.name}
+                        </Link>
+                      </h5>
+                      <div
+                        className="text-black-50 fw-normal truncate-500"
+                        dangerouslySetInnerHTML={{
+                          __html: product.description,
+                        }}
+                      ></div>
+                      <Button
+                        variant="primary"
+                        className="px-4"
+                        onClick={() => addCarts(product.id, 1)}
+                      >
+                        Add to Cart
+                      </Button>
+                    </Col>
+                    <Col md="4" className="text-end">
+                      <h5 className="text-black-50 text-decoration-line-through">
+                        $39.99
+                      </h5>
+                      <h3 className="text-primary mb-4">
+                        {product.price.formatted_with_symbol}
+                      </h3>
+                      <WishList />
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+            </Col>
+          )
+      )}
     </>
+  );
+
+  let items = [];
+  for (let number = 1; number <= pagesNumber; number++) {
+    items.push(
+      <Pagination.Item
+        key={number}
+        active={number === currentPage}
+        onClick={() => paginate(number)}
+      >
+        {number}
+      </Pagination.Item>
+    );
+  }
+
+  const PaginationButtons = () => (
+    <div className="d-flex justify-content-center">
+      <Pagination>{items}</Pagination>
+    </div>
   );
 
   const SearchReasult = () => (
@@ -241,12 +300,7 @@ function SearchProducts() {
       </Row>
       <Row>
         <ListViewProduct />
-        <ListViewProduct />
-        <ListViewProduct />
-        <ListViewProduct />
-        <ListViewProduct />
-        <ListViewProduct />
-        <ListViewProduct />
+        <PaginationButtons />
       </Row>
     </>
   );

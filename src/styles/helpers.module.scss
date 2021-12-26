@@ -38,3 +38,12 @@
   max-height: 214px;
   overflow-y: scroll;
 }
+
+.truncate-500 {
+  p {
+    max-width: 500px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}

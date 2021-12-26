@@ -21,7 +21,7 @@ import FlashSale from "./components/home/flashSale/flashSale";
 import { commerce } from "./lib/commerce";
 // React Router
 import {
-  useLocation,
+  // useLocation,
   BrowserRouter as Router,
   Routes,
   Route,
@@ -38,18 +38,18 @@ function Home() {
   const [carts, setCarts] = useState({});
   const [checkoutToken, setcheckoutToken] = useState({});
   const [show, setShow] = useState(false);
-  const [path, setPath] = useState("/");
+  // const [path, setPath] = useState("/");
 
   // console.log(requests);
 
-  const PagePath = () => {
-    const location = useLocation();
-    const pathname = location.pathname;
-    setPath(pathname);
-    console.log(path);
+  // const PagePath = () => {
+  //   const location = useLocation();
+  //   const pathname = location.pathname;
+  //   setPath(pathname);
+  //   console.log(path);
 
-    return null;
-  };
+  //   return null;
+  // };
 
   // const Pagename = () => <h1>Page Name</h1>;
 
@@ -113,7 +113,7 @@ function Home() {
         <Container className="text-center pt-5">
           <Pagename />
         </Container> */}
-        <PagePath />
+        {/* <PagePath /> */}
         <Routes>
           <Route
             exact
@@ -220,7 +220,7 @@ function Home() {
             path="/search"
             element={
               <>
-                <SearchProducts />
+                <SearchProducts products={products} addCarts={handleAddCart} />
               </>
             }
           ></Route>

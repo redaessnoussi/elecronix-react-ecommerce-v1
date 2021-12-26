@@ -18,3 +18,10 @@ $link-hover-color: $primary !important;
     color: $primary !important;
   }
 }
+
+.pagination {
+  .page-item.active .page-link {
+    color: $white !important;
+  }
+  margin-bottom: 0 !important;
+}
