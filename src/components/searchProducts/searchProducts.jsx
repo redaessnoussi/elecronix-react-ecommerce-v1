@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import React from "react";
 import {
   Badge,
@@ -19,10 +19,19 @@ import "../../../node_modules/rc-slider/assets/index.css";
 import { ProductStarsRatings, ReviewSold, WishList } from "../product/product";
 import { Link } from "react-router-dom";
 
+const { createSliderWithTooltip } = Slider;
+const Range = createSliderWithTooltip(Slider.Range);
+
 function SearchProducts({ products, addCarts }) {
   const [currentPage, setCurrentPage] = useState(1);
-  // let priceFilter = [0, 6000];
-  const [priceFilter, setpriceFilter] = useState([0, 6000]);
+  // let xx = [0, 6000];
+  // console.log(xx);
+  // const [priceFilter2, setpriceFilter2] = useState(100);
+  const [priceFilter, setpriceFilter] = useState([0, 400]);
+
+  useEffect(() => {
+    console.log("Slider value: " + priceFilter);
+  }, [priceFilter]);
   // const minMaxValues = [0, 400];
   const postsPerPage = 5;
   const indexOfLastPost = currentPage * postsPerPage;
@@ -128,22 +137,33 @@ function SearchProducts({ products, addCarts }) {
     </div>
   );
 
-  const { createSliderWithTooltip } = Slider;
-  const Range = createSliderWithTooltip(Slider.Range);
+  // const updateRange = (e) => setpriceFilter2(e.target.value);
 
   const PriceFilter = () => (
     <>
       <h6 className="mb-3">Filter by Price</h6>
       <Range
         min={0}
-        max={6000}
-        defaultValue={[0, 6000]}
+        max={2000}
+        defaultValue={[0, 400]}
         tipFormatter={(value) => `$${value}`}
         step={100}
-        // onChange={(value) => setpriceFilter(value)}
+        onChange={(value) => setpriceFilter(value)}
+        // onAfterChange={(value) => setpriceFilter(value)}
+        // onClick={(value) => setpriceFilter(value)}
         className="mb-3"
-        // value={(value) => setpriceFilter(value)}
+        value={priceFilter}
       />
+      {/* <input
+        type="range"
+        className="form-range"
+        min="0"
+        max="2000"
+        step="100"
+        id="customRange3"
+        onChange={updateRange}
+        value={priceFilter2}
+      /> */}
       <p className="text-black-50 small mb-0">
         Price:{" "}
         <span className="text-black">
