@@ -7,8 +7,6 @@ import {
   Navbar,
   Button,
   Nav,
-  InputGroup,
-  FormControl,
   // Spinner,
   // NavLink,
 } from "react-bootstrap";
@@ -20,11 +18,11 @@ import {
   UilPhone,
   UilEnvelopeAlt,
   UilUser,
-  UilSearch,
   UilShoppingBag,
 } from "@iconscout/react-unicons";
+import SearchBar from "./SearchBar/SearchBar";
 
-function Header({ handleShow, cartItemsTotal }) {
+function Header({ handleShow, cartItemsTotal, searchProduct, setfilterNow }) {
   const TopNavbar = () => (
     <Navbar bg="white" className="border-bottom">
       <Container className="align-items-center">
@@ -47,7 +45,10 @@ function Header({ handleShow, cartItemsTotal }) {
         <MenuItems />
         {/* SEARCH BAR */}
         <Col md="4">
-          <SearchBar />
+          <SearchBar
+            searchProduct={searchProduct}
+            setfilterNow={setfilterNow}
+          />
         </Col>
         {/* SHOPPIGN CART WITH NOTIFICATION */}
         <ShoppingCart />
@@ -94,20 +95,7 @@ function Header({ handleShow, cartItemsTotal }) {
   //     <span className="visually-hidden">Loading...</span>
   //   </>
   // );
-
-  const SearchBar = () => (
-    <InputGroup>
-      <FormControl
-        placeholder="Search here"
-        aria-label="Search here"
-        aria-describedby="search"
-        className="bg-light bg-opacity-25 shadow-none"
-      />
-      <Button variant="primary" id="search">
-        <UilSearch />
-      </Button>
-    </InputGroup>
-  );
+  // console.log(searchQuery);
 
   const MenuItems = () => (
     <Nav

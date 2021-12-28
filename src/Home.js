@@ -98,10 +98,32 @@ function Home() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filterNow, setfilterNow] = useState(false);
+
+  const searchProduct = (query) => {
+    query !== "" && setSearchQuery(query);
+    query !== "" && setfilterNow(true);
+  };
+
+  useEffect(() => {
+    searchQuery !== "" && console.log(`Product searching for: ${searchQuery}`);
+  }, [searchQuery]);
+
+  useEffect(() => {
+    // console.log(`Filter Now : ${filterNow}`);
+  }, [filterNow]);
+
   return (
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
-        <Header cartItemsTotal={carts} handleShow={handleShow} />
+        <Header
+          cartItemsTotal={carts}
+          handleShow={handleShow}
+          searchQuery={searchQuery}
+          setfilterNow={setfilterNow}
+          searchProduct={searchProduct}
+        />
         <CartsCanvas
           show={show}
           handleClose={handleClose}
@@ -220,7 +242,13 @@ function Home() {
             path="/search"
             element={
               <>
-                <SearchProducts products={products} addCarts={handleAddCart} />
+                <SearchProducts
+                  products={products}
+                  addCarts={handleAddCart}
+                  searchQuery={searchQuery}
+                  filterNow={filterNow}
+                  setfilterNow={setfilterNow}
+                />
               </>
             }
           ></Route>
