@@ -107,7 +107,7 @@ function Home() {
   };
 
   useEffect(() => {
-    searchQuery !== "" && console.log(`Product searching for: ${searchQuery}`);
+    return null;
   }, [searchQuery]);
 
   useEffect(() => {
