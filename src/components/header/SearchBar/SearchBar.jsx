@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { UilSearch } from "@iconscout/react-unicons";
 import { Button, FormControl, InputGroup } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function SearchBar({ searchProduct, setfilterNow }) {
   const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+
   const searchNow = (query) => {
+    navigate("/search");
     if (query !== "") {
       searchProduct(query);
       setfilterNow(true);
@@ -14,19 +18,23 @@ function SearchBar({ searchProduct, setfilterNow }) {
   };
 
   return (
-    <InputGroup>
-      <FormControl
-        placeholder="Search here"
-        aria-label="Search here"
-        aria-describedby="search"
-        className="bg-light bg-opacity-25 shadow-none"
-        onChange={(event) => setQuery(event.target.value)}
-        value={query}
-      />
-      <Button variant="primary" id="search" onClick={() => searchNow(query)}>
-        <UilSearch />
-      </Button>
-    </InputGroup>
+    <>
+      <form onSubmit={() => searchNow(query)}>
+        <InputGroup>
+          <FormControl
+            placeholder="Search here"
+            aria-label="Search here"
+            aria-describedby="search"
+            className="bg-light bg-opacity-25 shadow-none"
+            onChange={(event) => setQuery(event.target.value)}
+            value={query}
+          />
+          <Button type="submit" variant="primary" id="search">
+            <UilSearch />
+          </Button>
+        </InputGroup>
+      </form>
+    </>
   );
 }
 
