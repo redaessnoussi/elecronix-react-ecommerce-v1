@@ -10,8 +10,9 @@ function FlashSale({ requests }) {
         <Col md="auto">
           <h1 className="fw-bold mb-0">Flash Sale</h1>
         </Col>
-        <CountdownTimer />
-        {/* <Col md="auto">{timer && }</Col> */}
+        <Col md="auto">
+          <CountdownTimer />
+        </Col>
         <Col className="text-end">
           <p className="text-primary mb-0">View All</p>
         </Col>
