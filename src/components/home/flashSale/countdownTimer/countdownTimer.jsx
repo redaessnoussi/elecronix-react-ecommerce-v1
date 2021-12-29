@@ -41,7 +41,6 @@ function CountdownTimer() {
     startTimer();
     return () => {
       clearInterval(interval);
-      console.log("Component Unmouted");
     };
   });
 
