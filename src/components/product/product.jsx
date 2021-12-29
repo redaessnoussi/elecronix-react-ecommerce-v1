@@ -194,7 +194,13 @@ function Product({ products, cartItemsTotal, updateItemCart, addCarts }) {
     <>
       <div className="d-flex align-items-center mb-3">
         <div className="flex-shrink-0">
-          <Image src={"/images/" + avatar + ".png"} alt="avatar-1" width="50" />
+          <Image
+            src={"/images/" + avatar + ".jpg"}
+            alt="avatar-1"
+            width="70"
+            height="70"
+            className="rounded-circle img-cover"
+          />
         </div>
         <div className="flex-grow-1 ms-3">
           <h6 className="mt-0">{name}</h6>
@@ -221,7 +227,6 @@ function Product({ products, cartItemsTotal, updateItemCart, addCarts }) {
           <ReviewComment name="Alex" avatar="avatar-1" />
           <ReviewComment name="Maria" avatar="avatar-3" />
           <ReviewComment name="Bob" avatar="avatar-2" />
-          <ReviewComment name="Jeff" avatar="avatar-1" />
         </Tab>
         <Tab eventKey="discussion" title="Discussion" className="border-end">
           Discussion
