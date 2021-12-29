@@ -99,16 +99,19 @@ function Home() {
   const handleShow = () => setShow(true);
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [filterNow, setfilterNow] = useState(false);
+  // const [filterNow, setfilterNow] = useState(false);
+  const [filterNow, setfilterNow] = useState(true);
 
   const searchProduct = (query) => {
-    query !== "" && setSearchQuery(query);
-    query !== "" && setfilterNow(true);
+    // query !== "" && setSearchQuery(query);
+    // query !== "" && setfilterNow(true);
+    setSearchQuery(query);
+    setfilterNow(true);
   };
 
-  useEffect(() => {
-    return null;
-  }, [searchQuery]);
+  // useEffect(() => {
+  //   return null;
+  // }, [searchQuery]);
 
   return (
     <Router>
@@ -188,7 +191,7 @@ function Home() {
             exact
             path="/carts"
             element={
-              checkoutToken ? (
+              checkoutToken && (
                 <>
                   <CartSteps />
                   <ViewCarts
@@ -199,8 +202,6 @@ function Home() {
                     // pagePath={PagePath}
                   />
                 </>
-              ) : (
-                alert("Hello")
               )
             }
           />

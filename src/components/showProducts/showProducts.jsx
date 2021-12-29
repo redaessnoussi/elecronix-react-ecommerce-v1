@@ -30,8 +30,8 @@ function ShowProducts({
   setfilterNow,
 }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [priceFilter, setpriceFilter] = useState([0, 400]);
-  const [confirmFilter, setconfirmFilter] = useState([0, 400]);
+  const [priceFilter, setpriceFilter] = useState([0, 2000]);
+  const [confirmFilter, setconfirmFilter] = useState([0, 2000]);
 
   const postsPerPage = 5;
   const indexOfLastPost = currentPage * postsPerPage;
@@ -298,7 +298,7 @@ function ShowProducts({
               <Range
                 min={0}
                 max={2000}
-                defaultValue={[0, 400]}
+                defaultValue={[0, 2000]}
                 tipFormatter={(value) => `$${value}`}
                 step={100}
                 onChange={(value) => setconfirmFilter(value)}

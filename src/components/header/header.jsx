@@ -82,21 +82,6 @@ function Header({ handleShow, cartItemsTotal, searchProduct, setfilterNow }) {
     </ul>
   );
 
-  // const LoadingSpinner = ({ color, size }) => (
-  //   <>
-  //     <Spinner
-  //       variant={color}
-  //       as="span"
-  //       animation="border"
-  //       size={size}
-  //       role="status"
-  //       aria-hidden="true"
-  //     />
-  //     <span className="visually-hidden">Loading...</span>
-  //   </>
-  // );
-  // console.log(searchQuery);
-
   const MenuItems = () => (
     <Nav
       activeKey="/"
