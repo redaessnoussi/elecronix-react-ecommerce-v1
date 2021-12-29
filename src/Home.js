@@ -7,7 +7,6 @@ import requests from "./api/request";
 import CartSteps from "./components/cartSteps/cartSteps";
 import Header from "./components/header/header";
 // import Products from "./components/home/products/products";
-import SearchProducts from "./components/searchProducts/searchProducts";
 import CartsCanvas from "./components/carts/cartsCanvas";
 import ViewCarts from "./components/carts/ViewCarts";
 import Checkout from "./components/checkout/checkout";
@@ -32,6 +31,7 @@ import MiddlePageBanner from "./components/home/middlePageBanner/middlePageBanne
 import FeaturedProducts from "./components/home/featuredProducts/featuredProducts";
 import TopRatedProducts from "./components/home/topRatedProducts/topRatedProducts";
 import Product from "./components/product/product";
+import ShowProducts from "./components/showProducts/showProducts";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -109,10 +109,6 @@ function Home() {
   useEffect(() => {
     return null;
   }, [searchQuery]);
-
-  useEffect(() => {
-    // console.log(`Filter Now : ${filterNow}`);
-  }, [filterNow]);
 
   return (
     <Router>
@@ -239,10 +235,10 @@ function Home() {
           />
           <Route
             exact
-            path="/search"
+            path="/products"
             element={
               <>
-                <SearchProducts
+                <ShowProducts
                   products={products}
                   addCarts={handleAddCart}
                   searchQuery={searchQuery}

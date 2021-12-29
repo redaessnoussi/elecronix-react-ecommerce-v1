@@ -22,7 +22,7 @@ import { Link } from "react-router-dom";
 const { createSliderWithTooltip } = Slider;
 const Range = createSliderWithTooltip(Slider.Range);
 
-function SearchProducts({
+function ShowProducts({
   products,
   addCarts,
   searchQuery,
@@ -341,4 +341,4 @@ function SearchProducts({
   );
 }
 
-export default SearchProducts;
+export default ShowProducts;

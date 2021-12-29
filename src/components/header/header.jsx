@@ -103,13 +103,15 @@ function Header({ handleShow, cartItemsTotal, searchProduct, setfilterNow }) {
       onSelect={(selectedKey) => console.log(`selected ${selectedKey}`)}
     >
       <Nav.Item className="me-3">
-        <Nav.Link href="/">Home</Nav.Link>
+        <Link eventkey="home" to="/" className="nav-link">
+          Home
+        </Link>
       </Nav.Item>
       <Nav.Item className="me-3">
         <Nav.Link eventkey="about">About</Nav.Link>
       </Nav.Item>
       <Nav.Item className="me-3">
-        <Link eventkey="product" to="/product" className="nav-link">
+        <Link eventkey="product" to="/products" className="nav-link">
           Product
         </Link>
       </Nav.Item>

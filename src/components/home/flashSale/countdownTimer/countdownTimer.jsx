@@ -1,13 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 
 function CountdownTimer() {
-  // const [days, setdays] = useState("00");
   const [hours, sethours] = useState("00");
   const [minutes, setminutes] = useState("00");
   const [seconds, setseconds] = useState("00");
 
-  let interval = useRef();
+  var interval;
 
   const startTimer = () => {
     const countdownDate = new Date("May 30, 2022 00:00:00").getTime();
@@ -23,14 +22,9 @@ function CountdownTimer() {
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      if (distance < 0) {
-        clearInterval(interval.current);
-      } else {
-        // setdays(days);
-        sethours(hours);
-        setminutes(minutes);
-        setseconds(seconds);
-      }
+      sethours(hours);
+      setminutes(minutes);
+      setseconds(seconds);
     }, 1000);
   };
 
@@ -45,9 +39,10 @@ function CountdownTimer() {
 
   useEffect(() => {
     startTimer();
-    // return () => {
-    //   clearInterval(interval.current);
-    // };
+    return () => {
+      clearInterval(interval);
+      console.log("Component Unmouted");
+    };
   });
 
   return (

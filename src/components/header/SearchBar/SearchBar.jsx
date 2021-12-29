@@ -8,13 +8,15 @@ function SearchBar({ searchProduct, setfilterNow }) {
   const navigate = useNavigate();
 
   const searchNow = (query) => {
-    navigate("/search");
-    if (query !== "") {
-      searchProduct(query);
-      setfilterNow(true);
-    } else {
-      setfilterNow(false);
-    }
+    navigate("/products");
+    searchProduct(query);
+    setfilterNow(true);
+    // if (query !== "") {
+    //   searchProduct(query);
+    //   setfilterNow(true);
+    // } else {
+    //   setfilterNow(false);
+    // }
   };
 
   return (
