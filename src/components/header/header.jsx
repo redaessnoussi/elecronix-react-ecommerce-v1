@@ -101,7 +101,9 @@ function Header({ handleShow, cartItemsTotal, searchProduct, setfilterNow }) {
         </Link>
       </Nav.Item>
       <Nav.Item className="me-3">
-        <Nav.Link eventkey="blog">Blog</Nav.Link>
+        <Link eventkey="blog" to="/blogs" className="nav-link">
+          Blog
+        </Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link eventkey="contact">Contact</Nav.Link>

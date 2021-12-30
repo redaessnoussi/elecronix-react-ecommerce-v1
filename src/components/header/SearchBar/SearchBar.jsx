@@ -31,7 +31,7 @@ function SearchBar({ searchProduct, setfilterNow }) {
             onChange={(event) => setQuery(event.target.value)}
             value={query}
           />
-          <Button type="submit" variant="primary" id="search">
+          <Button type="submit" variant="primary" id="search-products">
             <UilSearch />
           </Button>
         </InputGroup>

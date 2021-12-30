@@ -1,5 +1,7 @@
 import React, { Suspense, useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+// React Router
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // API
 import requests from "./api/request";
 // Components
@@ -18,13 +20,7 @@ import CategoriesButtons from "./components/home/categoriesButtons/categoriesBut
 import FlashSale from "./components/home/flashSale/flashSale";
 // Library
 import { commerce } from "./lib/commerce";
-// React Router
-import {
-  // useLocation,
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
+
 import BrandNames from "./components/home/brandNames/brandNames";
 import NewArrival from "./components/home/newArrival/newArrival";
 import MiddlePageBanner from "./components/home/middlePageBanner/middlePageBanner";
@@ -32,26 +28,13 @@ import FeaturedProducts from "./components/home/featuredProducts/featuredProduct
 import TopRatedProducts from "./components/home/topRatedProducts/topRatedProducts";
 import Product from "./components/product/product";
 import ShowProducts from "./components/showProducts/showProducts";
+import Blogs from "./components/Blogs/Blogs";
 
 function Home() {
   const [products, setProducts] = useState([]);
   const [carts, setCarts] = useState({});
   const [checkoutToken, setcheckoutToken] = useState({});
   const [show, setShow] = useState(false);
-  // const [path, setPath] = useState("/");
-
-  // console.log(requests);
-
-  // const PagePath = () => {
-  //   const location = useLocation();
-  //   const pathname = location.pathname;
-  //   setPath(pathname);
-  //   console.log(path);
-
-  //   return null;
-  // };
-
-  // const Pagename = () => <h1>Page Name</h1>;
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
@@ -134,7 +117,6 @@ function Home() {
         <Container className="text-center pt-5">
           <Pagename />
         </Container> */}
-        {/* <PagePath /> */}
         <Routes>
           <Route
             exact
@@ -199,7 +181,6 @@ function Home() {
                     updateItemCart={updateItemCart}
                     removeAllItems={removeAllItems}
                     checkoutToken={checkoutToken.id}
-                    // pagePath={PagePath}
                   />
                 </>
               )
@@ -248,7 +229,16 @@ function Home() {
                 />
               </>
             }
-          ></Route>
+          />
+          <Route
+            exact
+            path="/blogs"
+            element={
+              <>
+                <Blogs />
+              </>
+            }
+          />
         </Routes>
         <Newsletter />
         <Footer />
