@@ -7,6 +7,7 @@ import {
   FormControl,
   Image,
   InputGroup,
+  Pagination,
   Row,
 } from "react-bootstrap";
 import { UilSearch } from "@iconscout/react-unicons";
@@ -42,12 +43,24 @@ function Blogs() {
         <Card.Body>
           <h6 className="mb-3">Categories</h6>
           <ul className="mb-0">
-            <li>Technology</li>
-            <li>Blog</li>
-            <li>Gadget</li>
-            <li>Gaming</li>
-            <li>Reviews</li>
-            <li>News</li>
+            <li>
+              <a href="!#">Technology</a>
+            </li>
+            <li>
+              <a href="!#">Blog</a>
+            </li>
+            <li>
+              <a href="!#">Gadget</a>
+            </li>
+            <li>
+              <a href="!#">Gaming</a>
+            </li>
+            <li>
+              <a href="!#">Reviews</a>
+            </li>
+            <li>
+              <a href="!#">News</a>
+            </li>
           </ul>
         </Card.Body>
       </Card>
@@ -55,7 +68,7 @@ function Blogs() {
   );
   const TagName = ({ name }) => (
     <>
-      <span class="badge bg-light text-dark me-2 px-4 py-2">{name}</span>
+      <span className="badge bg-light text-dark me-2 px-4 py-2">{name}</span>
     </>
   );
   const Tags = () => (
@@ -77,8 +90,8 @@ function Blogs() {
 
   const RecentPostItem = () => (
     <>
-      <div class="d-flex mb-3 position-relative">
-        <div class="flex-shrink-0">
+      <div className="d-flex mb-3 position-relative">
+        <div className="flex-shrink-0">
           <Image
             src="/images/none.svg"
             className="img-cover"
@@ -87,8 +100,8 @@ function Blogs() {
             height="100"
           />
         </div>
-        <div class="flex-grow-1 ms-3">
-          <h6 class="lh-base mt-0">
+        <div className="flex-grow-1 ms-3">
+          <h6 className="lh-base mt-0">
             <Link to="/blogs" className="stretched-link">
               {postTitle}
             </Link>
@@ -123,15 +136,17 @@ function Blogs() {
     return (
       <>
         <Col md="4">
-          <Card className="border-0">
+          <Card className="border-0 shadow-sm">
             <Image
               src="/images/none.svg"
-              class="card-img-top"
+              className="card-img-top img-card-rounded"
               alt="blog-post"
             />
             <Card.Body>
-              <h5 class="card-title">{postTitle}</h5>
-              <p class="card-text">{postDesctiption}</p>
+              <h5 className="card-title">
+                <Link to="/blogs">{postTitle}</Link>
+              </h5>
+              <p className="card-text">{postDesctiption}</p>
               <p className="small text-primary mb-0">
                 {postAuthor} - <span className="text-black">12 June 2021</span>
               </p>
@@ -142,39 +157,58 @@ function Blogs() {
     );
   };
 
+  let items = [];
+  const current = 2;
+  for (let number = 1; number <= 5; number++) {
+    items.push(
+      <Pagination.Item key={number} active={number === 2 && current}>
+        {number}
+      </Pagination.Item>
+    );
+  }
+
+  const PaginationButtons = () => (
+    <div className="d-flex justify-content-center mt-5">
+      <Pagination>{items}</Pagination>
+    </div>
+  );
+
   const BlogPosts = () => (
-    <Row className="gap-y-20">
-      <PostCard
-        postTitle={postTitle}
-        postAuthor={postAuthor}
-        postDesctiption={postDesctiption}
-      />
-      <PostCard
-        postTitle={postTitle}
-        postAuthor={postAuthor}
-        postDesctiption={postDesctiption}
-      />
-      <PostCard
-        postTitle={postTitle}
-        postAuthor={postAuthor}
-        postDesctiption={postDesctiption}
-      />
-      <PostCard
-        postTitle={postTitle}
-        postAuthor={postAuthor}
-        postDesctiption={postDesctiption}
-      />
-      <PostCard
-        postTitle={postTitle}
-        postAuthor={postAuthor}
-        postDesctiption={postDesctiption}
-      />
-      <PostCard
-        postTitle={postTitle}
-        postAuthor={postAuthor}
-        postDesctiption={postDesctiption}
-      />
-    </Row>
+    <>
+      <Row className="gap-y-20">
+        <PostCard
+          postTitle={postTitle}
+          postAuthor={postAuthor}
+          postDesctiption={postDesctiption}
+        />
+        <PostCard
+          postTitle={postTitle}
+          postAuthor={postAuthor}
+          postDesctiption={postDesctiption}
+        />
+        <PostCard
+          postTitle={postTitle}
+          postAuthor={postAuthor}
+          postDesctiption={postDesctiption}
+        />
+        <PostCard
+          postTitle={postTitle}
+          postAuthor={postAuthor}
+          postDesctiption={postDesctiption}
+        />
+        <PostCard
+          postTitle={postTitle}
+          postAuthor={postAuthor}
+          postDesctiption={postDesctiption}
+        />
+        <PostCard
+          postTitle={postTitle}
+          postAuthor={postAuthor}
+          postDesctiption={postDesctiption}
+        />
+      </Row>
+      <PaginationButtons />
+    </>
   );
 
   return (

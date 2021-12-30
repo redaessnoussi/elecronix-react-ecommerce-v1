@@ -34,3 +34,8 @@
 .img-cover {
   object-fit: cover;
 }
+
+.img-card-rounded {
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+}

@@ -17,61 +17,61 @@ function CategoriesButtons() {
             </Link>
           </p>
         </Col>
-        <Col className="text-center">
+        <Col className="text-center position-relative">
           <Button variant="link" className="border mb-3 p-2">
             <Image src="/images/smartphone.svg" width="40" />
           </Button>
-          <p className="stretched-link mb-0">
+          <p className=" mb-0">
             <Link className="stretched-link mb-0" to="/products">
               Mobile & Tablet
             </Link>
           </p>
         </Col>
-        <Col className="text-center">
+        <Col className="text-center position-relative">
           <Button variant="link" className="border mb-3 p-2">
             <Image src="/images/camera.svg" width="40" />
           </Button>
-          <p className="stretched-link mb-0">
+          <p className="mb-0">
             <Link className="stretched-link mb-0" to="/products">
               Camera
             </Link>
           </p>
         </Col>
-        <Col className="text-center">
+        <Col className="text-center position-relative">
           <Button variant="link" className="border mb-3 p-2">
             <Image src="/images/smartbox.svg" width="40" />
           </Button>
-          <p className="stretched-link mb-0">
+          <p className="mb-0">
             <Link className="stretched-link mb-0" to="/products">
               TV & Smart Box
             </Link>
           </p>
         </Col>
-        <Col className="text-center">
+        <Col className="text-center position-relative">
           <Button variant="link" className="border mb-3 p-2">
             <Image src="/images/appliance.svg" width="40" />
           </Button>
-          <p className="stretched-link mb-0">
+          <p className="mb-0">
             <Link className="stretched-link mb-0" to="/products">
               Home Appliance
             </Link>
           </p>
         </Col>
-        <Col className="text-center">
+        <Col className="text-center position-relative">
           <Button variant="link" className="border mb-3 p-2">
             <Image src="/images/accessories.svg" width="40" />
           </Button>
-          <p className="stretched-link mb-0">
+          <p className="mb-0">
             <Link className="stretched-link mb-0" to="/products">
               Accessories
             </Link>
           </p>
         </Col>
-        <Col className="text-center">
+        <Col className="text-center position-relative">
           <Button variant="link" className="border mb-3 p-2">
             <Image src="/images/joystick.svg" width="40" />
           </Button>
-          <p className="stretched-link mb-0">
+          <p className="mb-0">
             <Link className="stretched-link mb-0" to="/products">
               Other Categories
             </Link>

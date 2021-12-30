@@ -150,7 +150,7 @@ function ShowProducts({
     filterNow && (
       <p className="text-black-50 small mb-0">
         Viewing <span className="text-black">{productsViewing}</span> of{" "}
-        <span className="text-black">{productsViewing}</span> product
+        <span className="text-black">{productsOnPage.length}</span> products
       </p>
     );
 
@@ -185,7 +185,7 @@ function ShowProducts({
         currentProducts.map(
           (product, key) =>
             key <= postsPerPage && (
-              <Col sm="12" className="mb-3 p-4 border" key={key}>
+              <Col sm="12" className="p-4 border" key={key}>
                 <div className="d-flex align-items-center">
                   <Image
                     src={product.image.url}
@@ -262,7 +262,7 @@ function ShowProducts({
   }
 
   const PaginationButtons = () => (
-    <div className="d-flex justify-content-center">
+    <div className="d-flex justify-content-center mt-5">
       <Pagination>{items}</Pagination>
     </div>
   );
@@ -277,10 +277,10 @@ function ShowProducts({
           <SortBy />
         </Col>
       </Row>
-      <Row>
+      <Row className="gap-y-20">
         <ListViewProduct />
-        <PaginationButtons />
       </Row>
+      <PaginationButtons />
     </>
   );
 
