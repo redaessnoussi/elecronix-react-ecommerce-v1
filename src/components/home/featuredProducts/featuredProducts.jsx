@@ -27,7 +27,9 @@ function FeaturedProducts({ products, addCarts }) {
         <p className="mb-4">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </p>
-        <Button variant="outline-grey-70">Shop Now</Button>
+        <Link className="btn btn-outline-grey-70" to="/products">
+          Shop Now
+        </Link>
       </Card.Body>
     </Card>
   );
@@ -111,7 +113,14 @@ function FeaturedProducts({ products, addCarts }) {
                 <h3 className="fw-bold mb-0">Featured Products</h3>
               </Col>
               <Col className="text-end">
-                <p className="text-primary mb-0">View All</p>
+                <p className="mb-0">
+                  <Link
+                    to="/products"
+                    className="text-primary text-decoration-none"
+                  >
+                    View All
+                  </Link>
+                </p>
               </Col>
             </Row>
             <Row>

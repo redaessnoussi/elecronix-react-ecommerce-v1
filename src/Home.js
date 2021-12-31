@@ -29,6 +29,7 @@ import TopRatedProducts from "./components/home/topRatedProducts/topRatedProduct
 import Product from "./components/product/product";
 import ShowProducts from "./components/showProducts/showProducts";
 import Blogs from "./components/Blogs/Blogs";
+import AboutUs from "./components/aboutUs/aboutUs";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -236,6 +237,15 @@ function Home() {
             element={
               <>
                 <Blogs />
+              </>
+            }
+          />
+          <Route
+            exact
+            path="/about-us"
+            element={
+              <>
+                <AboutUs />
               </>
             }
           />

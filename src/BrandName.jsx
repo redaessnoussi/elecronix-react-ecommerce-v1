@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function BrandName() {
   return (
-    <a href="/" className="text-decoration-none">
+    <Link to="/" className="text-decoration-none">
       <h2 className="text-primary fw-bold mb-0">Elecronix</h2>
-    </a>
+    </Link>
   );
 }
 

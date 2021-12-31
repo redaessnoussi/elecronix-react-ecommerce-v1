@@ -66,7 +66,14 @@ function TopRatedProducts({ products, addCarts }) {
             <h3 className="fw-bold mb-0">Top Rated Product</h3>
           </Col>
           <Col className="text-end">
-            <p className="mb-0 text-primary">View All</p>
+            <p className="mb-0">
+              <Link
+                to="/products"
+                className="text-primary text-decoration-none"
+              >
+                View All
+              </Link>
+            </p>
           </Col>
         </Row>
         <Row>

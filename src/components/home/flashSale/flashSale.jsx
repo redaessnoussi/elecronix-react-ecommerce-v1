@@ -1,5 +1,6 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import CountdownTimer from "./countdownTimer/countdownTimer";
 import Slider from "./slider/slider";
 
@@ -14,7 +15,11 @@ function FlashSale({ requests }) {
           <CountdownTimer />
         </Col>
         <Col className="text-end">
-          <p className="text-primary mb-0">View All</p>
+          <p className="mb-0">
+            <Link to="/products" className="text-primary text-decoration-none">
+              View All
+            </Link>
+          </p>
         </Col>
       </Row>
       <Slider requests={requests} />

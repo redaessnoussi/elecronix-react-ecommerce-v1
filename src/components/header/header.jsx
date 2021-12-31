@@ -93,7 +93,9 @@ function Header({ handleShow, cartItemsTotal, searchProduct, setfilterNow }) {
         </Link>
       </Nav.Item>
       <Nav.Item className="me-3">
-        <Nav.Link eventkey="about">About</Nav.Link>
+        <Link eventkey="about-us" to="/about-us" className="nav-link">
+          About
+        </Link>
       </Nav.Item>
       <Nav.Item className="me-3">
         <Link eventkey="product" to="/products" className="nav-link">
@@ -106,7 +108,9 @@ function Header({ handleShow, cartItemsTotal, searchProduct, setfilterNow }) {
         </Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventkey="contact">Contact</Nav.Link>
+        <Link eventkey="contact" to="/contact" className="nav-link">
+          Contact
+        </Link>
       </Nav.Item>
     </Nav>
   );
