@@ -15,7 +15,7 @@ function TopRatedProducts({ products, addCarts }) {
     products.map(
       (product, index) =>
         index < 4 && (
-          <Col md="3" key={index}>
+          <Col md="6" lg="3" key={index} className="mb-3">
             <Card className="h-100">
               <Card.Body className="text-center d-flex flex-column justify-content-between align-items-center">
                 <Image
@@ -62,7 +62,7 @@ function TopRatedProducts({ products, addCarts }) {
     <>
       <Container className="py-5 mb-5">
         <Row className="mb-3">
-          <Col>
+          <Col xs="auto">
             <h3 className="fw-bold mb-0">Top Rated Product</h3>
           </Col>
           <Col className="text-end">

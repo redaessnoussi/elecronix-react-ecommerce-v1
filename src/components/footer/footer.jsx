@@ -32,8 +32,8 @@ function Footer() {
     <>
       <div className="bg-primary-100 py-5">
         <Container>
-          <Row className="mb-5">
-            <Col>
+          <Row className="mb-5 mb-md-0">
+            <Col md="6" lg="3">
               <BrandName />
               <p className="fw-light my-4">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -50,7 +50,7 @@ function Footer() {
                 </li>
               </ul>
             </Col>
-            <Col md="2">
+            <Col md="3" lg="3">
               <h4 className="fw-bold mb-4">Company</h4>
               <ul className="list-unstyled">
                 <li className="mb-3">
@@ -80,7 +80,7 @@ function Footer() {
                 </li>
               </ul>
             </Col>
-            <Col md="3">
+            <Col md="3" lg="3">
               <h4 className="fw-bold mb-4">Information</h4>
               <ul className="list-unstyled">
                 <li className="mb-3">
@@ -105,7 +105,7 @@ function Footer() {
                 </li>
               </ul>
             </Col>
-            <Col md="2">
+            <Col md="6" lg="3">
               <h4 className="fw-bold mb-4">Follow Us</h4>
               <Button className="p-1 me-3">
                 <UilInstagram width="35" height="35" />

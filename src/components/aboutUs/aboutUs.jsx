@@ -18,7 +18,7 @@ function AboutUs() {
       <Image
         src="/images/team.jpg"
         className="img-thumbnail"
-        style={{ height: "500px" }}
+        style={{ "max-height": "500px" }}
       />
     </div>
   );
@@ -27,7 +27,7 @@ function AboutUs() {
     <div className="text-center pt-5 mb-5">
       <h1 className="mb-5">Why Choosing Us</h1>
       <Row>
-        <Col md="3">
+        <Col md="6" lg className="mb-4">
           <Image
             src="/images/quality.svg"
             width="64"
@@ -39,7 +39,7 @@ function AboutUs() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.
           </p>
         </Col>
-        <Col md="3">
+        <Col md="6" lg className="mb-4">
           <Image
             src="/images/fast-delivery.svg"
             width="64"
@@ -51,7 +51,7 @@ function AboutUs() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.
           </p>
         </Col>
-        <Col md="3">
+        <Col md="6" lg className="mb-4">
           <Image
             src="/images/cash-delivery.svg"
             width="64"
@@ -63,7 +63,7 @@ function AboutUs() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.
           </p>
         </Col>
-        <Col md="3">
+        <Col md="6" lg className="mb-4">
           <Image
             src="/images/quality-2.svg"
             width="64"
@@ -89,7 +89,7 @@ function AboutUs() {
         </p>
       </div>
       <Row className="pt-4">
-        <Col md="3">
+        <Col md="6" lg className="mb-4">
           <Card>
             <Card.Img
               variant="top"
@@ -103,7 +103,7 @@ function AboutUs() {
             </Card.Body>
           </Card>
         </Col>
-        <Col md="3">
+        <Col md="6" lg className="mb-4">
           <Card>
             <Card.Img
               variant="top"
@@ -117,7 +117,7 @@ function AboutUs() {
             </Card.Body>
           </Card>
         </Col>
-        <Col md="3">
+        <Col md="6" lg className="mb-4">
           <Card>
             <Card.Img
               variant="top"
@@ -131,7 +131,7 @@ function AboutUs() {
             </Card.Body>
           </Card>
         </Col>
-        <Col md="3">
+        <Col md="6" lg className="mb-4">
           <Card>
             <Card.Img
               variant="top"

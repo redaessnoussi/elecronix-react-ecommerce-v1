@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Card, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function MiddlePageBanner() {
   return (
@@ -12,9 +13,11 @@ function MiddlePageBanner() {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor.
             </p>
-            <Button size="lg" variant="outline-primary px-5">
-              Shop Now
-            </Button>
+            <Link to="/products">
+              <Button size="lg" variant="outline-primary px-5">
+                Shop Now
+              </Button>
+            </Link>
           </Card.Body>
         </Card>
       </Container>

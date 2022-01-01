@@ -26,36 +26,35 @@ function NewArrival({ products }) {
                   NEW
                 </Badge>
                 <Row className="align-items-center">
-                  <Col md="auto">
+                  <Col xs="12" className="text-center">
                     <Image
                       src={product.image.url}
                       className={images.img__products_2}
                     />
                   </Col>
-                  <Col
-                    md="6"
-                    className="d-flex flex-column justify-content-between"
-                  >
-                    <p className="mb-2">
-                      <Link
-                        to={"/product/" + product.id}
-                        className="stretched-link text-decoration-none"
-                      >
-                        {product.name}
-                      </Link>{" "}
-                    </p>
-                    <h5 className="fw-bold mb-4">
-                      {product.price.formatted_with_symbol}
-                    </h5>
-                    <div className="d-flex align-items-center">
-                      <AiFillStar
-                        className={icons.star + " me-2"}
-                        width="19"
-                        height="19"
-                      />{" "}
-                      <span className="small text-black-50">
-                        5.0 <span className="mx-2">|</span> Sold 99
-                      </span>
+                  <Col>
+                    <div className="d-flex flex-column justify-content-between">
+                      <p className="mb-2">
+                        <Link
+                          to={"/product/" + product.id}
+                          className="stretched-link text-decoration-none"
+                        >
+                          {product.name}
+                        </Link>{" "}
+                      </p>
+                      <h5 className="fw-bold mb-4">
+                        {product.price.formatted_with_symbol}
+                      </h5>
+                      <div className="d-flex align-items-center">
+                        <AiFillStar
+                          className={icons.star + " me-2"}
+                          width="19"
+                          height="19"
+                        />{" "}
+                        <span className="small text-black-50">
+                          5.0 <span className="mx-2">|</span> Sold 99
+                        </span>
+                      </div>
                     </div>
                   </Col>
                 </Row>
@@ -83,7 +82,7 @@ function NewArrival({ products }) {
             </p>
           </Col>
         </Row>
-        <Row>
+        <Row className="gap-y-20">
           <ProductCards />
         </Row>
       </Container>

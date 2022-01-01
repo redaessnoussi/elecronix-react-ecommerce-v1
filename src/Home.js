@@ -128,11 +128,16 @@ function Home() {
                 {/* HERO SECTION WITH SLIDER */}
                 <Container className="py-4">
                   <Row>
-                    <Col md="8">
+                    <Col
+                      lg="8"
+                      md="12"
+                      className="d-none d-md-block mb-4 mb-lg-0"
+                    >
                       <SliderHero />
                     </Col>
                     <Col
-                      md="4"
+                      lg="4"
+                      md="12"
                       className="d-flex flex-column justify-content-between"
                     >
                       <ProductCategoryCard

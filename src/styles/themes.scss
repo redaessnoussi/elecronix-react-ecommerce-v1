@@ -21,6 +21,16 @@ $theme-colors: (
   "dark-90": $dark-90,
 );
 
+// Media Breakpoints
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1200px,
+  xxl: 1400px,
+);
+
 // Components modules
 @import "navs.module";
 @import "dropdowns.module";

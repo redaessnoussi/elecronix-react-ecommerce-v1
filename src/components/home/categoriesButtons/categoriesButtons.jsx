@@ -6,8 +6,8 @@ function CategoriesButtons() {
   return (
     <Container className="py-4">
       <h3 className="fw-bold mb-3">Category</h3>
-      <Row>
-        <Col className="text-center position-relative">
+      <Row className="gap-y-20">
+        <Col xs="6" md="4" lg className="text-center position-relative">
           <Button variant="link" className="border mb-3 p-2">
             <Image src="/images/laptop.svg" width="40" />
           </Button>
@@ -17,7 +17,7 @@ function CategoriesButtons() {
             </Link>
           </p>
         </Col>
-        <Col className="text-center position-relative">
+        <Col xs="6" md="4" lg className="text-center position-relative">
           <Button variant="link" className="border mb-3 p-2">
             <Image src="/images/smartphone.svg" width="40" />
           </Button>
@@ -27,7 +27,7 @@ function CategoriesButtons() {
             </Link>
           </p>
         </Col>
-        <Col className="text-center position-relative">
+        <Col xs="6" md="4" lg className="text-center position-relative">
           <Button variant="link" className="border mb-3 p-2">
             <Image src="/images/camera.svg" width="40" />
           </Button>
@@ -37,7 +37,7 @@ function CategoriesButtons() {
             </Link>
           </p>
         </Col>
-        <Col className="text-center position-relative">
+        <Col xs="6" md="4" lg className="text-center position-relative">
           <Button variant="link" className="border mb-3 p-2">
             <Image src="/images/smartbox.svg" width="40" />
           </Button>
@@ -47,7 +47,7 @@ function CategoriesButtons() {
             </Link>
           </p>
         </Col>
-        <Col className="text-center position-relative">
+        <Col xs="6" md="4" lg className="text-center position-relative">
           <Button variant="link" className="border mb-3 p-2">
             <Image src="/images/appliance.svg" width="40" />
           </Button>
@@ -57,7 +57,7 @@ function CategoriesButtons() {
             </Link>
           </p>
         </Col>
-        <Col className="text-center position-relative">
+        <Col xs="6" md="4" lg className="text-center position-relative">
           <Button variant="link" className="border mb-3 p-2">
             <Image src="/images/accessories.svg" width="40" />
           </Button>
@@ -67,7 +67,7 @@ function CategoriesButtons() {
             </Link>
           </p>
         </Col>
-        <Col className="text-center position-relative">
+        <Col xs="6" md="4" lg className="text-center position-relative">
           <Button variant="link" className="border mb-3 p-2">
             <Image src="/images/joystick.svg" width="40" />
           </Button>

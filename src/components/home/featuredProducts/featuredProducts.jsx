@@ -49,7 +49,7 @@ function FeaturedProducts({ products, addCarts }) {
     products?.map(
       (product, key) =>
         key < 3 && (
-          <Col md="4" key={key}>
+          <Col md="4" key={key} className="mb-3 mb-md-0">
             <Card className="h-100">
               <Card.Body className="text-center d-flex flex-column justify-content-between">
                 <div>
@@ -104,12 +104,12 @@ function FeaturedProducts({ products, addCarts }) {
     <>
       <Container className="py-5">
         <Row>
-          <Col md="3">
+          <Col md="3" className="mb-5 mb-md-0 d-md-none">
             <BestCollection />
           </Col>
-          <Col md="9">
+          <Col>
             <Row className="mb-3">
-              <Col>
+              <Col xs="auto">
                 <h3 className="fw-bold mb-0">Featured Products</h3>
               </Col>
               <Col className="text-end">

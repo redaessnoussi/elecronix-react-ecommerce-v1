@@ -6,23 +6,22 @@ import {
   InputGroup,
   Button,
   Col,
+  Row,
 } from "react-bootstrap";
 
 function Newsletter() {
   return (
     <div className="bg-primary py-5">
       <Container>
-        <div className="d-flex text-white">
-          <div className="flex-shrink-0">
-            <Image src="/images/newspaper.svg" />
-          </div>
-          <div className="flex-grow-1 ms-4 d-flex flex-column justify-content-between">
-            <h1 className="fw-bold mb-0">Join our newsletter now!</h1>
-            <p className="mb-0">
-              Register now and get our latest updates and promos.
-            </p>
-          </div>
-          <Col md="4">
+        <Row className="text-white">
+          <Col lg="auto" md="2" className="d-none d-md-block mb-md-4">
+            <Image src="/images/newspaper.svg" className="img-fluid" />
+          </Col>
+          <Col lg="6" md="10" xs="12" className="mb-md-4">
+            <h1 className="fw-bold">Join our newsletter now!</h1>
+            <p>Register now and get our latest updates and promos.</p>
+          </Col>
+          <Col lg xs="12">
             <InputGroup className="bg-white input-group p-2 rounded-3 border-0">
               <FormControl
                 placeholder="Enter your email"
@@ -39,7 +38,7 @@ function Newsletter() {
               </Button>
             </InputGroup>
           </Col>
-        </div>
+        </Row>
       </Container>
     </div>
   );
