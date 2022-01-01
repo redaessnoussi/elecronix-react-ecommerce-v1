@@ -59,7 +59,7 @@ function Contact() {
           </Card>
         </Col>
         <Col md="5">
-          <Card bg="primary">
+          <Card bg="primary" className="h-100">
             <Card.Body className="text-white p-5">
               <h2 className="mb-4">Contact</h2>
               <Row className="mb-3">
