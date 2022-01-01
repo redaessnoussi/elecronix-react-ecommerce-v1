@@ -40,4 +40,7 @@ a.btn.btn-outline-primary {
 
 a.btn.btn-outline-grey-70 {
   color: $grey-70 !important;
+  &:hover {
+    color: $primary !important;
+  }
 }

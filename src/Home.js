@@ -30,6 +30,7 @@ import Product from "./components/product/product";
 import ShowProducts from "./components/showProducts/showProducts";
 import Blogs from "./components/Blogs/Blogs";
 import AboutUs from "./components/aboutUs/aboutUs";
+import Contact from "./components/contact/contact";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -246,6 +247,15 @@ function Home() {
             element={
               <>
                 <AboutUs />
+              </>
+            }
+          />
+          <Route
+            exact
+            path="/contact"
+            element={
+              <>
+                <Contact />
               </>
             }
           />
