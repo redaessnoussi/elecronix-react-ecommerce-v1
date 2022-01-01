@@ -7,10 +7,11 @@ function SearchBar({ searchProduct, setfilterNow }) {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
 
-  const searchNow = (query) => {
+  const searchNow = (query, event) => {
     navigate("/products");
     searchProduct(query);
     setfilterNow(true);
+    event.preventDefault();
     // if (query !== "") {
     //   searchProduct(query);
     //   setfilterNow(true);
@@ -21,7 +22,7 @@ function SearchBar({ searchProduct, setfilterNow }) {
 
   return (
     <>
-      <form onSubmit={() => searchNow(query)}>
+      <form onSubmit={(event) => searchNow(query, event)}>
         <InputGroup>
           <FormControl
             placeholder="Search here"
