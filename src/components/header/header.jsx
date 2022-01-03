@@ -17,9 +17,9 @@ import SearchBar from "./SearchBar/SearchBar";
 
 function Header({ handleShow, cartItemsTotal, searchProduct, setfilterNow }) {
   const TopNavbar = () => (
-    <Container className="align-items-center border-bottom">
+    <Container className="align-items-center border-bottom py-2">
       <Row>
-        <Col xs="12" md="auto" lg="3" className="mb-4 mb-md-0">
+        <Col xs="12" md="auto" lg="3" className="d-none d-lg-block mb-md-0">
           {/* SOCIAL MEDIA ICONS */}
           <SocialMediaIcons />
         </Col>
@@ -100,7 +100,7 @@ function Header({ handleShow, cartItemsTotal, searchProduct, setfilterNow }) {
           className="w-100 justify-content-lg-evenly justify-content-xl-start mb-4 mb-lg-0"
         >
           <Nav.Item>
-            <Link eventkey="home" to="/" className="nav-link me-lg-3">
+            <Link eventkey="home" to="/" className="nav-link me-lg-2 me-xl-3">
               Home
             </Link>
           </Nav.Item>
@@ -108,7 +108,7 @@ function Header({ handleShow, cartItemsTotal, searchProduct, setfilterNow }) {
             <Link
               eventkey="about-us"
               to="/about-us"
-              className="nav-link me-lg-3"
+              className="nav-link me-lg-2 me-xl-3"
             >
               About
             </Link>
@@ -117,13 +117,17 @@ function Header({ handleShow, cartItemsTotal, searchProduct, setfilterNow }) {
             <Link
               eventkey="product"
               to="/products"
-              className="nav-link me-lg-3"
+              className="nav-link me-lg-2 me-xl-3"
             >
               Product
             </Link>
           </Nav.Item>
           <Nav.Item>
-            <Link eventkey="blog" to="/blogs" className="nav-link me-lg-3">
+            <Link
+              eventkey="blog"
+              to="/blogs"
+              className="nav-link me-lg-2 me-xl-3"
+            >
               Blog
             </Link>
           </Nav.Item>
@@ -165,7 +169,7 @@ function Header({ handleShow, cartItemsTotal, searchProduct, setfilterNow }) {
   );
 
   const AccountLogin = () => (
-    <ul className="d-md-flex justify-content-md-between justify-content-lg-end list-inline mb-0">
+    <ul className="d-md-flex justify-content-md-between justify-content-lg-end list-inline mb-0 text-md-center text-lg-end">
       <li className="list-inline-item me-3 me-md-0">
         <Button variant="link" className="text-decoration-none text-black ps-0">
           <UilPhone className="text-primary me-1" />

@@ -44,7 +44,7 @@ export const ProductStarsRatings = () => (
 export const WishList = () => (
   <Button
     variant="link"
-    className="ms-auto px-0 d-flex align-items-center text-decoration-none"
+    className="px-0 d-flex ms-md-auto ms-lg-0 ms-xl-auto align-items-center text-decoration-none"
   >
     <AiFillHeart className={icons.wish_heart + " text-primary me-1"} />
     <p className={typography.fw_600 + " small mb-0"}>Add to Wishlist</p>
@@ -67,13 +67,13 @@ function Product({ products, cartItemsTotal, updateItemCart, addCarts }) {
 
   const ProductStates = () => (
     <Row className="align-items-center mb-2">
-      <Col>
+      <Col xs="12" md="6" lg="12" xl="6">
         <div className="d-flex align-items-center">
           <ProductStarsRatings />
           <ReviewSold />
         </div>
       </Col>
-      <Col>
+      <Col xs="12" md="6" lg="12" xl="6">
         <WishList />
       </Col>
     </Row>
@@ -101,20 +101,28 @@ function Product({ products, cartItemsTotal, updateItemCart, addCarts }) {
 
   const ShippingProduct = () => (
     <>
-      <div className="d-flex align-items-center border-bottom pb-4 pt-5 mb-4">
-        <p className="me-4 mb-0">
-          <FaShippingFast className={icons.shipping + " text-primary me-2"} />
-          Free Delivery
-        </p>
-        <p className="me-4 mb-0">
-          <HiOutlineTicket className={icons.shipping + " text-primary me-2"} />
-          Available Voucher
-        </p>
-        <p className="mb-0">
-          <FiBox className={icons.shipping + " text-primary me-2"} />
-          In Stock
-        </p>
-      </div>
+      <Row className="align-items-center border-bottom pb-4 pt-5 mb-4">
+        <Col>
+          <p className="me-4 mb-0">
+            <FaShippingFast className={icons.shipping + " text-primary me-2"} />
+            Free Delivery
+          </p>
+        </Col>
+        <Col>
+          <p className="me-4 mb-0">
+            <HiOutlineTicket
+              className={icons.shipping + " text-primary me-2"}
+            />
+            Available Voucher
+          </p>
+        </Col>
+        <Col>
+          <p className="mb-0">
+            <FiBox className={icons.shipping + " text-primary me-2"} />
+            In Stock
+          </p>
+        </Col>
+      </Row>
     </>
   );
 
@@ -175,7 +183,7 @@ function Product({ products, cartItemsTotal, updateItemCart, addCarts }) {
 
   const AddCartChat = () => {
     return (
-      <div>
+      <div className="text-md-end text-lg-start">
         <Button variant="outline-primary" className="px-4 me-2">
           Chat
         </Button>
@@ -311,7 +319,7 @@ function Product({ products, cartItemsTotal, updateItemCart, addCarts }) {
             <Container className="py-5" key={key}>
               <Row className="mb-5">
                 {/* PRODUCT IMAGE SECTION */}
-                <Col md={6} className="text-center">
+                <Col md="12" lg="7" xl="6" className="text-center">
                   <ProductImage
                     productimage={
                       product.image?.url
@@ -324,7 +332,9 @@ function Product({ products, cartItemsTotal, updateItemCart, addCarts }) {
                 </Col>
                 {/* PRODUCT DETAILS SECTION */}
                 <Col
-                  md={6}
+                  md="12"
+                  lg="5"
+                  xl="6"
                   className="d-flex flex-column justify-content-between"
                 >
                   <div>
@@ -345,17 +355,21 @@ function Product({ products, cartItemsTotal, updateItemCart, addCarts }) {
                       productDescription={product?.description}
                     />
                   </div>
-                  <div className="d-flex justify-content-between">
-                    <QuantityButtons />
-                    <AddCartChat />
-                  </div>
+                  <Row className="justify-content-between">
+                    <Col xs="12" md="6" className="mb-3">
+                      <QuantityButtons />
+                    </Col>
+                    <Col xs="12" md="6">
+                      <AddCartChat />
+                    </Col>
+                  </Row>
                 </Col>
               </Row>
               <Row className="align-items-center">
-                <Col md={6}>
+                <Col md="6" lg="7" xl="6">
                   <NavsTabs />
                 </Col>
-                <Col md={6}>
+                <Col md="6" lg="5" xl="6">
                   <AddRating />
                 </Col>
               </Row>

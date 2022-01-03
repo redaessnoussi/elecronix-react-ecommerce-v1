@@ -12,8 +12,8 @@ import {
 function Contact() {
   return (
     <Container className="py-5">
-      <Row>
-        <Col md="7">
+      <Row className="gap-y-20">
+        <Col lg="7">
           <h1 className="mb-4">Contact Us</h1>
           <p className="text-black-50 mb-5">
             Learn more about our products and services to get a better
@@ -23,9 +23,9 @@ function Contact() {
             and not shared with third parties.
           </p>
         </Col>
-        <Col md="7">
-          <Card>
-            <Card.Body className="p-5">
+        <Col md="6" lg="7">
+          <Card className="h-100">
+            <Card.Body className="p-lg-5">
               <Form>
                 <Form.Group className="mb-4" controlId="name">
                   <Form.Label>Name *</Form.Label>
@@ -58,12 +58,12 @@ function Contact() {
             </Card.Body>
           </Card>
         </Col>
-        <Col md="5">
+        <Col md="6" lg="5">
           <Card bg="primary" className="h-100">
-            <Card.Body className="text-white p-5">
+            <Card.Body className="text-white p-lg-5">
               <h2 className="mb-4">Contact</h2>
               <Row className="mb-3">
-                <Col sm="auto" className="pe-0">
+                <Col xs="auto" className="pe-0">
                   <BiMap style={{ width: "32px", height: "32px" }} />
                 </Col>
                 <Col>
@@ -74,7 +74,7 @@ function Contact() {
                 </Col>
               </Row>
               <Row className="mb-3">
-                <Col sm="auto" className="pe-0">
+                <Col xs="auto" className="pe-0">
                   <BsTelephone style={{ width: "32px", height: "32px" }} />
                 </Col>
                 <Col>
@@ -82,7 +82,7 @@ function Contact() {
                 </Col>
               </Row>
               <Row className="mb-5">
-                <Col sm="auto" className="pe-0">
+                <Col xs="auto" className="pe-0">
                   <HiOutlineMail style={{ width: "32px", height: "32px" }} />
                 </Col>
                 <Col>
