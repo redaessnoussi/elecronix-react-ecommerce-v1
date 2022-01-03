@@ -64,6 +64,11 @@ function Header({ handleShow, cartItemsTotal, searchProduct, setfilterNow }) {
   const ShoppingCart = () => (
     <ul className="d-flex justify-content-between justify-content-md-evenly list-inline mb-0">
       <li className="list-inline-item me-4">
+        <Button variant="link" className="position-relative p-0">
+          <UilHeart />
+        </Button>
+      </li>
+      <li className="list-inline-item me-4">
         <Button
           variant="link"
           className="position-relative p-0"
@@ -77,11 +82,6 @@ function Header({ handleShow, cartItemsTotal, searchProduct, setfilterNow }) {
                 <span className="visually-hidden">carts items</span>
               </span>
             )}
-        </Button>
-      </li>
-      <li className="list-inline-item me-4">
-        <Button variant="link" className="position-relative p-0">
-          <UilHeart />
         </Button>
       </li>
       <li className="list-inline-item">
