@@ -1,6 +1,6 @@
-## Would you like to see the project live? ==> [Visit Now](https://elecronix.netlify.app)
+# Elecronix React, Bootstrap & Commerce.js Electronics Store:
 
-# Getting Started with Create React App
+## Would you like to see the project live? ==> [Visit Now](https://elecronix.netlify.app)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
